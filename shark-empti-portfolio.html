@@ -1,0 +1,2969 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="auto" data-lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shark Empti — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --orange: #E87B2A;
+      --orange-light: #F59340;
+      --orange-dark: #C4621E;
+      --orange-glow: rgba(232, 123, 42, 0.18);
+      --orange-glow-strong: rgba(232, 123, 42, 0.32);
+
+      /* dark theme defaults */
+      --bg: #0D0D12;
+      --bg2: #141419;
+      --bg3: #1C1C24;
+      --card: #1A1A24;
+      --card-hover: #20202c;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(232, 123, 42, 0.35);
+      --text: #F2F2F5;
+      --text-sub: #9090A8;
+      --text-muted: #5C5C78;
+      --pill-bg: rgba(255, 255, 255, 0.06);
+      --pill-hover: rgba(255, 255, 255, 0.10);
+      --nav-bg: rgba(13, 13, 18, 0.85);
+      --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --mockup-bg: #1A1A24;
+      --mockup-bar: #141419;
+    }
+
+    [data-theme="light"] {
+      --bg: #FAF7F3;
+      --bg2: #F4F0EA;
+      --bg3: #EDE8E0;
+      --card: #FFFFFF;
+      --card-hover: #FBF8F4;
+      --border: rgba(0, 0, 0, 0.07);
+      --border-hover: rgba(232, 123, 42, 0.4);
+      --text: #1A1A24;
+      --text-sub: #5C5C78;
+      --text-muted: #9090A8;
+      --pill-bg: rgba(0, 0, 0, 0.05);
+      --pill-hover: rgba(0, 0, 0, 0.09);
+      --nav-bg: rgba(250, 247, 243, 0.88);
+      --shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --mockup-bg: #FFFFFF;
+      --mockup-bar: #F4F0EA;
+      --orange-glow: rgba(232, 123, 42, 0.10);
+      --orange-glow-strong: rgba(232, 123, 42, 0.20);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    ::selection {
+      background-color: #ff4757;
+      color: #F2F2F5;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background .35s ease, color .35s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+    .display {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
+    }
+
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: .75rem;
+      color: var(--orange);
+    }
+
+    /* ─── SCROLL ANIMATIONS ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* stagger delays */
+    .d1 {
+      transition-delay: .1s;
+    }
+
+    .d2 {
+      transition-delay: .2s;
+    }
+
+    .d3 {
+      transition-delay: .3s;
+    }
+
+    .d4 {
+      transition-delay: .4s;
+    }
+
+    .d5 {
+      transition-delay: .5s;
+    }
+
+    .d6 {
+      transition-delay: .6s;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+      transition: background .35s ease;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .nav-logo .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #F2F2F5;
+      box-shadow: 0 0 20px var(--orange-glow-strong);
+    }
+
+    .nav-logo .brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .nav-logo .brand span {
+      display: block;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-weight: 400;
+      font-size: .6rem;
+      letter-spacing: .18em;
+      color: var(--text-sub);
+      text-transform: uppercase;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .4rem .9rem;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      color: var(--text-sub);
+    }
+
+    .nav-pill:hover {
+      background: var(--pill-hover);
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+
+    .nav-pill.active {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: .5rem 1.2rem;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px var(--orange-glow-strong);
+    }
+
+    .nav-cta:hover {
+      background: var(--orange-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--orange-glow-strong);
+    }
+
+    /* ─── CONTAINER ──────────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, var(--orange-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 75%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .35rem .9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .5;
+        transform: scale(1.3);
+      }
+    }
+
+    .hero-badge span {
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      line-height: .95;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title .orange {
+      color: var(--orange);
+    }
+
+    .hero-title .stroke {
+      -webkit-text-stroke: 2px var(--orange);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: .85rem 2rem;
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .04em;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 6px 24px var(--orange-glow-strong);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px var(--orange-glow-strong);
+    }
+
+    .btn-secondary {
+      background: var(--pill-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .85rem 2rem;
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: background .2s, border-color .2s, transform .15s;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--pill-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Mockup */
+    .hero-mockup {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .mockup-frame {
+      background: var(--mockup-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow), 0 0 80px var(--orange-glow);
+    }
+
+    .mockup-bar {
+      background: var(--mockup-bar);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .mockup-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mockup-dots span:nth-child(1) {
+      background: #FF5F57;
+    }
+
+    .mockup-dots span:nth-child(2) {
+      background: #FEBC2E;
+    }
+
+    .mockup-dots span:nth-child(3) {
+      background: #28C840;
+    }
+
+    .mockup-bar .url-bar {
+      flex: 1;
+      background: var(--border);
+      border-radius: 6px;
+      padding: .25rem .75rem;
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+
+    .mockup-content {
+      padding: 1.2rem;
+    }
+
+    /* Mini quiz builder mockup */
+    .mock-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      color: var(--orange);
+      margin-bottom: .6rem;
+      letter-spacing: .02em;
+    }
+
+    .mock-sub {
+      font-size: .68rem;
+      color: var(--text-muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .mock-row {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: .6rem;
+    }
+
+    .mock-select {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .6rem .8rem;
+      font-size: .7rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .mock-select .icon {
+      color: var(--orange);
+      font-size: .85rem;
+    }
+
+    .mock-input-row {
+      margin-bottom: .8rem;
+    }
+
+    .mock-input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+      padding: .6rem .8rem;
+      font-size: .7rem;
+      color: var(--text);
+    }
+
+    .mock-btn {
+      width: 100%;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: .65rem;
+      font-size: .72rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: default;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .mock-guru {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 180px;
+      background: var(--orange);
+      border-radius: 14px;
+      padding: .8rem;
+      box-shadow: 0 12px 40px rgba(232, 123, 42, .4);
+    }
+
+    .mock-guru .guru-header {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-bottom: .4rem;
+    }
+
+    .mock-guru .guru-avatar {
+      width: 22px;
+      height: 22px;
+      background: rgba(255, 255, 255, .25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      color: #F2F2F5;
+    }
+
+    .mock-guru .guru-name {
+      font-size: .68rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .05em;
+    }
+
+    .mock-guru .guru-role {
+      font-size: .55rem;
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .mock-guru .guru-msg {
+      font-size: .65rem;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    /* ─── STATS BAR ───────────────────────────────────────────── */
+    #stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 2rem 0;
+    }
+
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem 3rem;
+      border-right: 1px solid var(--border);
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.6rem;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: .2rem;
+    }
+
+    .stat-label {
+      font-size: .75rem;
+      color: var(--text-sub);
+      letter-spacing: .05em;
+    }
+
+    /* ─── SECTIONS SHARED ─────────────────────────────────────── */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .8rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: .95;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ─── PROBLEM ─────────────────────────────────────────────── */
+    #problem {
+      background: var(--bg);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+
+    .problem-left {}
+
+    .problem-story {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-sub);
+      margin-bottom: 2rem;
+    }
+
+    .problem-story strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .pain-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pain-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+
+    .pain-card:hover {
+      border-color: var(--border-hover);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .pain-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .pain-title {
+      font-weight: 700;
+      font-size: .92rem;
+      margin-bottom: .25rem;
+    }
+
+    .pain-desc {
+      font-size: .82rem;
+      color: var(--text-sub);
+      line-height: 1.55;
+    }
+
+    /* ─── SOLUTION ────────────────────────────────────────────── */
+    #solution {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solution-glow {
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--orange-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .solution-visual {
+      position: relative;
+    }
+
+    .solution-card-stack {
+      position: relative;
+      height: 340px;
+    }
+
+    .sol-card {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      width: 85%;
+      transition: transform .3s;
+    }
+
+    .sol-card:nth-child(1) {
+      top: 0;
+      left: 0;
+      z-index: 3;
+      box-shadow: var(--shadow-card);
+    }
+
+    .sol-card:nth-child(2) {
+      top: 30px;
+      left: 30px;
+      z-index: 2;
+      opacity: .7;
+    }
+
+    .sol-card:nth-child(3) {
+      top: 60px;
+      left: 60px;
+      z-index: 1;
+      opacity: .4;
+    }
+
+    .sol-card-tag {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: .5rem;
+    }
+
+    .sol-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .sol-card-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 100px;
+      margin-bottom: .4rem;
+      overflow: hidden;
+    }
+
+    .sol-card-bar .fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 100px;
+      animation: bar-fill 2.5s ease infinite alternate;
+    }
+
+    @keyframes bar-fill {
+      from {
+        width: 40%;
+      }
+
+      to {
+        width: 85%;
+      }
+    }
+
+    .sol-card-chips {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin-top: .8rem;
+    }
+
+    .chip {
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .25rem .7rem;
+      font-size: .68rem;
+      font-weight: 600;
+      color: var(--orange);
+    }
+
+    .bridge-arrow {
+      position: absolute;
+      right: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+      box-shadow: 0 0 24px var(--orange-glow-strong);
+      z-index: 10;
+    }
+
+    .solution-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .sol-point {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+    }
+
+    .sol-check {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+    }
+
+    .sol-point-text {
+      font-size: .9rem;
+      color: var(--text-sub);
+      line-height: 1.55;
+    }
+
+    .sol-point-text strong {
+      color: var(--text);
+    }
+
+    /* ─── FEATURES ────────────────────────────────────────────── */
+    #features {
+      background: var(--bg);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .features-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card), 0 0 40px var(--orange-glow);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card.featured {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .feature-card.featured .feature-desc {
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card.featured .feature-icon {
+      background: rgba(255, 255, 255, .2);
+      border-color: rgba(255, 255, 255, .3);
+    }
+
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.15rem;
+      letter-spacing: .03em;
+      margin-bottom: .5rem;
+    }
+
+    .feature-desc {
+      font-size: .84rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      margin-top: .8rem;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .2rem .6rem;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .feature-card.featured .feature-tag {
+      background: rgba(255, 255, 255, .2);
+      border-color: rgba(255, 255, 255, .3);
+      color: #fff;
+    }
+
+    /* ─── APP PREVIEW ─────────────────────────────────────────── */
+    #preview {
+      background: var(--bg2);
+    }
+
+    .preview-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .preview-tabs {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .tab-btn {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .5rem 1.1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-sub);
+      transition: all .2s;
+    }
+
+    .tab-btn:hover {
+      background: var(--pill-hover);
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .preview-frame {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow), 0 0 60px var(--orange-glow);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .preview-topbar {
+      background: var(--mockup-bar);
+      border-bottom: 1px solid var(--border);
+      padding: .8rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .preview-topbar .dots {
+      display: flex;
+      gap: .4rem;
+    }
+
+    .preview-topbar .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .preview-topbar .dots span:nth-child(1) {
+      background: #FF5F57;
+    }
+
+    .preview-topbar .dots span:nth-child(2) {
+      background: #FEBC2E;
+    }
+
+    .preview-topbar .dots span:nth-child(3) {
+      background: #28C840;
+    }
+
+    .preview-topbar .nav-items {
+      display: flex;
+      gap: .5rem;
+      margin-left: auto;
+    }
+
+    .preview-topbar .nav-item {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      color: var(--text-sub);
+    }
+
+    .preview-topbar .nav-item.active {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .screen {
+      display: none;
+      padding: 2rem;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Screen: Quiz Builder */
+    .qb-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: .4rem;
+    }
+
+    .qb-sub {
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .qb-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .qb-field label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      margin-bottom: .4rem;
+    }
+
+    .qb-select {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .75rem 1rem;
+      font-size: .82rem;
+      color: var(--text);
+      appearance: none;
+    }
+
+    .qb-field.full {
+      grid-column: 1/-1;
+    }
+
+    .qb-input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--orange);
+      border-radius: 12px;
+      padding: .75rem 1rem;
+      font-size: .82rem;
+      color: var(--text);
+    }
+
+    .qb-submit {
+      grid-column: 1/-1;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: .9rem;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* Screen: Dashboard */
+    .db-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .db-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .db-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .db-card:nth-child(3) {
+      background: var(--orange);
+      border-color: transparent;
+    }
+
+    .db-card:nth-child(3) .db-label,
+    .db-card:nth-child(3) .db-num {
+      color: #fff;
+    }
+
+    .db-card-icon {
+      font-size: 1.3rem;
+    }
+
+    .db-label {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .db-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--text);
+    }
+
+    .db-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+
+    .db-chart-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .db-chart-title {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .mini-bars {
+      display: flex;
+      gap: .4rem;
+      align-items: flex-end;
+      height: 80px;
+    }
+
+    .mini-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: var(--border);
+    }
+
+    .mini-bar.filled {
+      background: var(--orange);
+    }
+
+    .mini-bar.half {
+      background: var(--orange);
+      opacity: .5;
+    }
+
+    /* Screen: Flashcard */
+    .fc-progress {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: .6rem;
+    }
+
+    .fc-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .fc-bar .fill {
+      height: 100%;
+      width: 33%;
+      background: var(--orange);
+      border-radius: 100px;
+    }
+
+    .fc-card {
+      background: var(--bg2);
+      border: 2px solid rgba(232, 123, 42, .3);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      cursor: pointer;
+      transition: transform .3s;
+    }
+
+    .fc-card:hover {
+      transform: rotateY(5deg);
+    }
+
+    .fc-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .fc-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .fc-hint {
+      font-size: .72rem;
+      color: var(--text-muted);
+      margin-top: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .fc-actions {
+      display: flex;
+      gap: .8rem;
+    }
+
+    .fc-btn {
+      flex: 1;
+      padding: .8rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background .2s;
+    }
+
+    .fc-btn.next {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* Screen: Forum */
+    .forum-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .2rem;
+    }
+
+    .forum-sub {
+      font-size: .68rem;
+      color: var(--text-muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .forum-search {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--orange);
+      border-radius: 100px;
+      padding: .65rem 1.2rem;
+      font-size: .82rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .forum-post {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      margin-bottom: .6rem;
+    }
+
+    .forum-post-header {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .4rem;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .post-author {
+      font-weight: 700;
+      font-size: .78rem;
+      color: var(--orange);
+    }
+
+    .post-time {
+      font-size: .66rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .post-title {
+      font-weight: 700;
+      font-size: .88rem;
+      margin-bottom: .2rem;
+    }
+
+    .post-preview {
+      font-size: .78rem;
+      color: var(--text-sub);
+    }
+
+    .post-actions {
+      display: flex;
+      gap: .8rem;
+      margin-top: .5rem;
+    }
+
+    .post-action {
+      font-size: .68rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .post-action span {
+      color: var(--orange);
+    }
+
+    /* ─── DESIGN HIGHLIGHTS ───────────────────────────────────── */
+    #design {
+      background: var(--bg);
+    }
+
+    .design-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .design-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .design-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .design-card .big-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .design-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+
+    .design-card-desc {
+      font-size: .83rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* ─── WHY MATTERS ─────────────────────────────────────────── */
+    #why {
+      background: var(--bg2);
+    }
+
+    .why-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .compare-table {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .compare-head {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      background: var(--mockup-bar);
+      border-bottom: 1px solid var(--border);
+      padding: .8rem 1.2rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+    }
+
+    .compare-head span:last-child {
+      color: var(--orange);
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      padding: .85rem 1.2rem;
+      font-size: .82rem;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .compare-row:last-child {
+      border-bottom: none;
+    }
+
+    .compare-row:hover {
+      background: var(--bg2);
+    }
+
+    .cmp-feat {
+      color: var(--text-sub);
+    }
+
+    .cmp-no {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .cmp-yes {
+      color: var(--orange);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .why-text {}
+
+    .why-quote {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 2rem;
+    }
+
+    .tech-badge {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .35rem .9rem;
+      font-size: .74rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .tech-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    /* ─── COMMUNITY ───────────────────────────────────────────── */
+    #community {
+      background: var(--bg);
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 3.5rem;
+    }
+
+    .comm-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .comm-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .comm-card.accent {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .comm-card.accent .comm-desc {
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .comm-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .comm-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      margin-bottom: .5rem;
+    }
+
+    .comm-desc {
+      font-size: .84rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* mini calendar */
+    .mini-cal {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .cal-cell {
+      aspect-ratio: 1;
+      border-radius: 5px;
+      background: var(--border);
+    }
+
+    .cal-cell.active {
+      background: var(--orange);
+    }
+
+    /* streak */
+    .streak-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--orange);
+      line-height: 1;
+      margin-top: 1rem;
+    }
+
+    .streak-label {
+      font-size: .72rem;
+      color: var(--text-sub);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── CTA FINAL ───────────────────────────────────────────── */
+    #cta-final {
+      background: var(--bg2);
+      text-align: center;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, var(--orange-glow-strong) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-tag {
+      margin-bottom: 1.2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cta-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: .95;
+      margin-bottom: 1.4rem;
+    }
+
+    .cta-sub {
+      font-size: 1.05rem;
+      color: var(--text-sub);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-note {
+      margin-top: 1.4rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-version {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .25rem .75rem;
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: .08em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: .8rem;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--orange);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-mockup {
+        display: none;
+      }
+
+      .problem-grid,
+      .solution-grid,
+      .why-split {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .design-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .community-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .db-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .db-charts {
+        grid-template-columns: 1fr;
+      }
+
+      .qb-form {
+        grid-template-columns: 1fr;
+      }
+
+      .qb-field.full {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+
+      .nav-inner {
+        padding: 0 1.2rem;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .design-grid,
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-item {
+        padding: .8rem 1.5rem;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .compare-head,
+      .compare-row {
+        grid-template-columns: 2fr 1fr 1fr;
+        font-size: .72rem;
+      }
+    }
+
+    /* ─── THEME TRANSITION ────────────────────────────────────── */
+    * {
+      transition-property: background-color, border-color, color, box-shadow;
+      transition-duration: .25s;
+    }
+
+    .hero-mockup,
+    .float,
+    nav {
+      transition: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <div class="brand">
+          SHARK EMPTI
+          <span data-vi="Nền Tảng Học Tập Thông Minh" data-en="Intelligent Learning Platform"></span>
+        </div>
+      </a>
+      <div class="nav-controls">
+        <button class="nav-pill" id="langToggle">🌐 <span id="langLabel">EN</span></button>
+        <button class="nav-pill" id="themeToggle"><span id="themeIcon">☀️</span></button>
+        <a href="https://shark-empti.vercel.app" target="_blank" class="nav-cta" data-vi="Trải nghiệm ngay"
+          data-en="Try Now">Trải nghiệm ngay</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <!-- Left -->
+        <div>
+          <div class="hero-badge reveal">
+            <span class="dot"></span>
+            <span data-vi="V1.7.4 — Đang hoạt động" data-en="V1.7.4 — Live Now">V1.7.4 — Đang hoạt động</span>
+          </div>
+          <h1 class="hero-title reveal d1">
+            <span class="orange" data-vi="TRAIN SMARTER," data-en="TRAIN SMARTER,">TRAIN SMARTER,</span><br>
+            <span data-vi="LEARN" data-en="LEARN">LEARN</span>
+            <span class="stroke"> BETTER</span>
+          </h1>
+          <p class="hero-sub reveal d2"
+            data-vi="Nền tảng học tập thông minh kết hợp AI tạo đề linh hoạt, phân tích năng lực cá nhân và trợ lý học tập 24/7 — để bạn học chủ động hơn, tiến bộ rõ ràng hơn."
+            data-en="An intelligent learning platform combining AI-powered test generation, personalized skill analytics, and a 24/7 study assistant — so you learn proactively and improve measurably.">
+            Nền tảng học tập thông minh kết hợp AI tạo đề linh hoạt, phân tích năng lực cá nhân và trợ lý học tập 24/7 —
+            để bạn học chủ động hơn, tiến bộ rõ ràng hơn.
+          </p>
+          <div class="hero-actions reveal d3">
+            <a href="https://shark-empti.vercel.app" target="_blank" class="btn-primary">
+              <span data-vi="Khám phá Shark Empti" data-en="Explore Shark Empti">Khám phá Shark Empti</span> →
+            </a>
+            <a href="#features" class="btn-secondary">
+              <span data-vi="Xem tính năng" data-en="See Features">Xem tính năng</span>
+            </a>
+          </div>
+        </div>
+        <!-- Right: Mockup -->
+        <div class="hero-mockup reveal-right d2">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="url-bar">shark-empti.vercel.app</div>
+            </div>
+            <div class="mockup-content">
+              <div class="mock-headline" data-vi="TẠO BÀI KIỂM TRA" data-en="BUILD YOUR QUIZ">TẠO BÀI KIỂM TRA</div>
+              <div class="mock-sub" data-vi="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE"
+                data-en="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE">AI-POWERED TESTS TO TRACK YOUR PERFORMANCE</div>
+              <div class="mock-row">
+                <div class="mock-select"><span class="icon">📚</span> <span data-vi="Môn học (tuỳ chọn)"
+                    data-en="Subject (optional)">Môn học (tuỳ chọn)</span></div>
+                <div class="mock-select"><span class="icon">🎓</span> <span data-vi="Khối lớp (tuỳ chọn)"
+                    data-en="Grade (optional)">Khối lớp (tuỳ chọn)</span></div>
+              </div>
+              <div class="mock-input-row">
+                <div
+                  style="font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem;">
+                  ⊙ <span data-vi="CHỦ ĐỀ / BÀI HỌC *" data-en="TOPIC / LESSON *">CHỦ ĐỀ / BÀI HỌC *</span></div>
+                <div class="mock-input" data-vi="Nhập chủ đề bạn muốn ôn tập..."
+                  data-en="Enter the topic you want to practice...">Nhập chủ đề bạn muốn ôn tập...</div>
+              </div>
+              <div class="mock-btn" data-vi="✦ TẠO ĐỀ NGAY →" data-en="✦ GENERATE QUIZ →">✦ TẠO ĐỀ NGAY →</div>
+            </div>
+          </div>
+          <!-- Guru popup -->
+          <div class="mock-guru">
+            <div class="guru-header">
+              <div class="guru-avatar">✦</div>
+              <div>
+                <div class="guru-name">SHARK GURU</div>
+                <div class="guru-role">AI ASSISTANT</div>
+              </div>
+            </div>
+            <div class="guru-msg" data-vi="Sẵn sàng cùng bạn ôn luyện! Hỏi tôi bất cứ điều gì 🚀"
+              data-en="Ready to study with you! Ask me anything 🚀">Sẵn sàng cùng bạn ôn luyện! Hỏi tôi bất cứ điều gì
+              🚀</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATS BAR ─────────────────────────────────────────────── -->
+  <div id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal d1">
+          <div class="stat-num">1-50</div>
+          <div class="stat-label" data-vi="Câu hỏi mỗi bài" data-en="Questions per quiz">Câu hỏi mỗi bài</div>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="stat-num">AI</div>
+          <div class="stat-label" data-vi="Tạo đề thông minh" data-en="Intelligent generation">Tạo đề thông minh</div>
+        </div>
+        <div class="stat-item reveal d3">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label" data-vi="Trợ lý Shark Guru" data-en="Shark Guru assistant">Trợ lý Shark Guru</div>
+        </div>
+        <div class="stat-item reveal d4">
+          <div class="stat-num">∞</div>
+          <div class="stat-label" data-vi="Chủ đề ôn tập" data-en="Study topics">Chủ đề ôn tập</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM ───────────────────────────────────────────────── -->
+  <section id="problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="problem-left">
+          <div class="section-tag reveal" data-vi="Bối cảnh ra đời" data-en="The Problem">Bối cảnh ra đời</div>
+          <h2 class="section-title reveal d1" data-vi="Tại sao<br>học sinh vẫn<br>học đối phó?"
+            data-en="Why do students<br>still study<br>reactively?">Tại sao<br>học sinh vẫn<br>học đối phó?</h2>
+          <p class="problem-story reveal d2">
+            <span
+              data-vi="Học sinh hiện nay có đủ công cụ — ChatGPT để giải bài, ngân hàng đề để luyện, gia sư để ôn thi. Nhưng vẫn thiếu một thứ cốt lõi: <strong>một hệ thống đồng hành thực sự</strong> biết bạn học được gì, còn yếu gì, và cần làm gì tiếp theo."
+              data-en="Students today have plenty of tools — ChatGPT to solve problems, question banks to practice, tutors to help. But they still lack one core thing: <strong>a true companion system</strong> that knows what you've learned, where you're weak, and what to do next.">Học
+              sinh hiện nay có đủ công cụ — ChatGPT để giải bài, ngân hàng đề để luyện, gia sư để ôn thi. Nhưng vẫn
+              thiếu một thứ cốt lõi: <strong>một hệ thống đồng hành thực sự</strong> biết bạn học được gì, còn yếu gì,
+              và cần làm gì tiếp theo.</span>
+          </p>
+        </div>
+        <div class="pain-cards">
+          <div class="pain-card reveal d2">
+            <div class="pain-icon">🔄</div>
+            <div>
+              <div class="pain-title" data-vi="Nội dung học lặp đi lặp lại" data-en="Repetitive learning content">Nội
+                dung học lặp đi lặp lại</div>
+              <div class="pain-desc"
+                data-vi="Các nền tảng truyền thống dùng ngân hàng đề cố định. Làm hoài một bộ đề không giúp bạn phát triển thực sự."
+                data-en="Traditional platforms use fixed question banks. Repeating the same questions doesn't lead to real growth.">
+                Các nền tảng truyền thống dùng ngân hàng đề cố định. Làm hoài một bộ đề không giúp bạn phát triển thực
+                sự.</div>
+            </div>
+          </div>
+          <div class="pain-card reveal d3">
+            <div class="pain-icon">🤖</div>
+            <div>
+              <div class="pain-title" data-vi="Chatbot AI thiếu ngữ cảnh học tập"
+                data-en="AI chatbots lack learning context">Chatbot AI thiếu ngữ cảnh học tập</div>
+              <div class="pain-desc"
+                data-vi="ChatGPT hay Gemini không biết bạn vừa làm bài, vừa sai ở đâu, hay đang ôn chủ đề gì. Câu trả lời tổng quát, không cá nhân hóa."
+                data-en="ChatGPT and Gemini don't know what you just practiced, where you went wrong, or what topic you're reviewing. Generic answers, zero personalization.">
+                ChatGPT hay Gemini không biết bạn vừa làm bài, vừa sai ở đâu, hay đang ôn chủ đề gì. Câu trả lời tổng
+                quát, không cá nhân hóa.</div>
+            </div>
+          </div>
+          <div class="pain-card reveal d4">
+            <div class="pain-icon">📊</div>
+            <div>
+              <div class="pain-title" data-vi="Không ai phân tích tiến độ cho bạn"
+                data-en="No one analyzes your progress">Không ai phân tích tiến độ cho bạn</div>
+              <div class="pain-desc"
+                data-vi="Làm bài xong, biết đúng sai, nhưng không rõ mình đang giỏi gì, yếu gì, và nên luyện thêm gì. Thiếu vòng lặp phản hồi có hệ thống."
+                data-en="After finishing a test, you know right from wrong, but not what you're good at, weak at, or what to practice next. No systematic feedback loop.">
+                Làm bài xong, biết đúng sai, nhưng không rõ mình đang giỏi gì, yếu gì, và nên luyện thêm gì. Thiếu vòng
+                lặp phản hồi có hệ thống.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOLUTION ──────────────────────────────────────────────── -->
+  <section id="solution">
+    <div class="solution-glow"></div>
+    <div class="container">
+      <div class="solution-grid">
+        <!-- Visual -->
+        <div class="solution-visual reveal-left">
+          <div class="solution-card-stack">
+            <div class="sol-card">
+              <div class="sol-card-tag" data-vi="Phân tích kết quả" data-en="Performance Analysis">Phân tích kết quả
+              </div>
+              <div class="sol-card-title" data-vi="ĐIỂM MẠNH & YẾU" data-en="STRENGTHS & WEAKNESSES">ĐIỂM MẠNH & YẾU
+              </div>
+              <div class="sol-card-bar">
+                <div class="fill"></div>
+              </div>
+              <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:.5rem;" data-vi="Tiến độ tổng quan"
+                data-en="Overall progress">Tiến độ tổng quan</div>
+              <div class="sol-card-chips">
+                <span class="chip" data-vi="Tập hợp ✓" data-en="Sets ✓">Tập hợp ✓</span>
+                <span class="chip" data-vi="Đại số ✓" data-en="Algebra ✓">Đại số ✓</span>
+                <span class="chip" data-vi="Hình học ⚡" data-en="Geometry ⚡">Hình học ⚡</span>
+              </div>
+            </div>
+            <div class="sol-card"></div>
+            <div class="sol-card"></div>
+          </div>
+        </div>
+        <!-- Text -->
+        <div class="reveal-right">
+          <div class="section-tag" data-vi="Giải pháp" data-en="The Solution">Giải pháp</div>
+          <h2 class="section-title" data-vi="Shark Empti lấp<br>đầy khoảng trống"
+            data-en="Shark Empti<br>fills the gap">Shark Empti lấp<br>đầy khoảng trống</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem;"
+            data-vi="Không chỉ là một bộ đề hay một chatbot. Shark Empti là hệ thống tích hợp toàn bộ hành trình học: từ tạo đề → làm bài → phân tích → cải thiện — trong một vòng lặp liên tục."
+            data-en="Not just a question bank or a chatbot. Shark Empti integrates the entire learning journey: create → practice → analyze → improve — in one continuous loop.">
+            Không chỉ là một bộ đề hay một chatbot. Shark Empti là hệ thống tích hợp toàn bộ hành trình học: từ tạo đề →
+            làm bài → phân tích → cải thiện — trong một vòng lặp liên tục.
+          </p>
+          <div class="solution-points">
+            <div class="sol-point">
+              <div class="sol-check">✦</div>
+              <div class="sol-point-text"
+                data-vi="<strong>Tạo đề linh hoạt:</strong> chọn môn, lớp, chủ đề, độ khó, số câu — hệ thống tạo đề trong vài giây với Gemini AI."
+                data-en="<strong>Flexible test creation:</strong> choose subject, grade, topic, difficulty, question count — system generates in seconds with Gemini AI.">
+                <strong>Tạo đề linh hoạt:</strong> chọn môn, lớp, chủ đề, độ khó, số câu — hệ thống tạo đề trong vài
+                giây với Gemini AI.
+              </div>
+            </div>
+            <div class="sol-point">
+              <div class="sol-check">✦</div>
+              <div class="sol-point-text"
+                data-vi="<strong>Phân tích cá nhân hóa:</strong> sau mỗi bài, biết chính xác điểm mạnh, điểm yếu, và được đề xuất lộ trình cải thiện."
+                data-en="<strong>Personalized analytics:</strong> after each session, know exactly your strengths, weaknesses, and get an improvement roadmap.">
+                <strong>Phân tích cá nhân hóa:</strong> sau mỗi bài, biết chính xác điểm mạnh, điểm yếu, và được đề xuất
+                lộ trình cải thiện.
+              </div>
+            </div>
+            <div class="sol-point">
+              <div class="sol-check">✦</div>
+              <div class="sol-point-text"
+                data-vi="<strong>Trợ lý Shark Guru:</strong> AI chatbot hiểu ngữ cảnh bài làm của bạn, giải thích sâu hơn và gợi ý bài luyện tiếp theo."
+                data-en="<strong>Shark Guru assistant:</strong> AI chatbot understands your quiz context, explains in depth, and suggests next practice steps.">
+                <strong>Trợ lý Shark Guru:</strong> AI chatbot hiểu ngữ cảnh bài làm của bạn, giải thích sâu hơn và gợi
+                ý bài luyện tiếp theo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ──────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="container">
+      <div class="features-header">
+        <div class="section-tag reveal" style="justify-content:center;" data-vi="Tính năng nổi bật"
+          data-en="Core Features">Tính năng nổi bật</div>
+        <h2 class="section-title reveal d1" data-vi="Mọi thứ bạn cần<br>để học đúng cách"
+          data-en="Everything you need<br>to learn the right way">Mọi thứ bạn cần<br>để học đúng cách</h2>
+        <p class="section-desc reveal d2"
+          data-vi="Shark Empti không chỉ giúp bạn làm bài — mà giúp bạn hiểu sâu hơn, nhớ lâu hơn, và tiến bộ có hệ thống hơn."
+          data-en="Shark Empti doesn't just help you take tests — it helps you understand deeper, remember longer, and improve systematically.">
+          Shark Empti không chỉ giúp bạn làm bài — mà giúp bạn hiểu sâu hơn, nhớ lâu hơn, và tiến bộ có hệ thống hơn.
+        </p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card featured reveal d1">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title" data-vi="Tạo đề thông minh" data-en="Smart Quiz Builder">Tạo đề thông minh</div>
+          <div class="feature-desc"
+            data-vi="Tự do chọn môn học, khối lớp, chủ đề, dạng câu hỏi và độ khó. Gemini AI tạo ra bộ đề hoàn chỉnh — có câu hỏi, đáp án và giải thích — chỉ trong vài giây."
+            data-en="Choose subject, grade, topic, question type and difficulty. Gemini AI generates a complete quiz — questions, answers, and explanations — in seconds.">
+            Tự do chọn môn học, khối lớp, chủ đề, dạng câu hỏi và độ khó. Gemini AI tạo ra bộ đề hoàn chỉnh — có câu
+            hỏi, đáp án và giải thích — chỉ trong vài giây.</div>
+          <span class="feature-tag" data-vi="Cốt lõi" data-en="Core">Cốt lõi</span>
+        </div>
+
+        <div class="feature-card reveal d2">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title" data-vi="Dashboard phân tích" data-en="Analytics Dashboard">Dashboard phân tích
+          </div>
+          <div class="feature-desc"
+            data-vi="Biểu đồ kỹ năng học tập, thống kê lỗi sai, điểm mạnh, điểm yếu và lộ trình cải thiện cụ thể — tất cả được tổng hợp từ lịch sử làm bài của bạn."
+            data-en="Skill charts, error statistics, strengths, weaknesses, and specific improvement roadmaps — all aggregated from your quiz history.">
+            Biểu đồ kỹ năng học tập, thống kê lỗi sai, điểm mạnh, điểm yếu và lộ trình cải thiện cụ thể — tất cả được
+            tổng hợp từ lịch sử làm bài của bạn.</div>
+          <span class="feature-tag" data-vi="Phân tích" data-en="Analytics">Phân tích</span>
+        </div>
+
+        <div class="feature-card reveal d3">
+          <div class="feature-icon">🎮</div>
+          <div class="feature-title" data-vi="Sân chơi ôn luyện" data-en="Practice Playground">Sân chơi ôn luyện</div>
+          <div class="feature-desc"
+            data-vi="Flashcard để ghi nhớ lý thuyết, luyện lại lỗi sai, và các trò chơi học tập tương tác. Học mà chơi, chơi mà học."
+            data-en="Flashcards for memorizing theory, error-focused practice, and interactive learning games. Play to learn, learn to play.">
+            Flashcard để ghi nhớ lý thuyết, luyện lại lỗi sai, và các trò chơi học tập tương tác. Học mà chơi, chơi mà
+            học.</div>
+          <span class="feature-tag" data-vi="Tương tác" data-en="Interactive">Tương tác</span>
+        </div>
+
+        <div class="feature-card reveal d4">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title" data-vi="Shark Guru AI" data-en="Shark Guru AI">Shark Guru AI</div>
+          <div class="feature-desc"
+            data-vi="Trợ lý AI không chỉ trả lời câu hỏi — mà hiểu context bài làm của bạn, giải thích chi tiết từng câu sai và đề xuất bước học tiếp theo."
+            data-en="An AI assistant that doesn't just answer questions — it understands your quiz context, explains each wrong answer in detail, and suggests next steps.">
+            Trợ lý AI không chỉ trả lời câu hỏi — mà hiểu context bài làm của bạn, giải thích chi tiết từng câu sai và
+            đề xuất bước học tiếp theo.</div>
+          <span class="feature-tag" data-vi="AI" data-en="AI">AI</span>
+        </div>
+
+        <div class="feature-card reveal d5">
+          <div class="feature-icon">📝</div>
+          <div class="feature-title" data-vi="Ghi chú cá nhân" data-en="Personal Notes">Ghi chú cá nhân</div>
+          <div class="feature-desc"
+            data-vi="Ghi chú ở bất cứ đâu trong ứng dụng. Hỗ trợ LaTeX để viết công thức toán học. Lưu lại những kiến thức quan trọng hoặc lỗi hay mắc phải."
+            data-en="Take notes anywhere in the app. LaTeX support for math formulas. Save important knowledge or common mistakes to revisit anytime.">
+            Ghi chú ở bất cứ đâu trong ứng dụng. Hỗ trợ LaTeX để viết công thức toán học. Lưu lại những kiến thức quan
+            trọng hoặc lỗi hay mắc phải.</div>
+          <span class="feature-tag" data-vi="LaTeX" data-en="LaTeX">LaTeX</span>
+        </div>
+
+        <div class="feature-card reveal d6">
+          <div class="feature-icon">💬</div>
+          <div class="feature-title" data-vi="Diễn đàn cộng đồng" data-en="Community Forum">Diễn đàn cộng đồng</div>
+          <div class="feature-desc"
+            data-vi="Đặt câu hỏi, chia sẻ kinh nghiệm và kết nối với người học khác. Hỗ trợ LaTeX cho bình luận học thuật. Học cùng nhau, tiến bộ nhanh hơn."
+            data-en="Ask questions, share experiences and connect with other learners. LaTeX support for academic comments. Learn together, progress faster.">
+            Đặt câu hỏi, chia sẻ kinh nghiệm và kết nối với người học khác. Hỗ trợ LaTeX cho bình luận học thuật. Học
+            cùng nhau, tiến bộ nhanh hơn.</div>
+          <span class="feature-tag" data-vi="Cộng đồng" data-en="Community">Cộng đồng</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── APP PREVIEW ───────────────────────────────────────────── -->
+  <section id="preview">
+    <div class="container">
+      <div class="preview-header">
+        <div class="section-tag reveal" style="justify-content:center;" data-vi="Giao diện thực tế"
+          data-en="App Preview">Giao diện thực tế</div>
+        <h2 class="section-title reveal d1" data-vi="Xem sản phẩm<br>hoạt động" data-en="See the product<br>in action">
+          Xem sản phẩm<br>hoạt động</h2>
+      </div>
+      <div class="preview-tabs reveal d2">
+        <button class="tab-btn active" onclick="switchTab('quiz')" data-vi="🏠 Tạo đề" data-en="🏠 Quiz Builder">🏠 Tạo
+          đề</button>
+        <button class="tab-btn" onclick="switchTab('dash')" data-vi="📊 Dashboard" data-en="📊 Dashboard">📊
+          Dashboard</button>
+        <button class="tab-btn" onclick="switchTab('flash')" data-vi="🎮 Flashcard" data-en="🎮 Flashcard">🎮
+          Flashcard</button>
+        <button class="tab-btn" onclick="switchTab('forum')" data-vi="💬 Diễn đàn" data-en="💬 Forum">💬 Diễn
+          đàn</button>
+      </div>
+      <div class="preview-frame reveal d3">
+        <div class="preview-topbar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div style="font-size:.72rem;color:var(--text-muted);flex:1;text-align:center;">shark-empti.vercel.app</div>
+          <div class="nav-items">
+            <div class="nav-item active">🏠</div>
+            <div class="nav-item">⊞</div>
+            <div class="nav-item">🎮</div>
+            <div class="nav-item">💬</div>
+          </div>
+        </div>
+
+        <!-- Screen: Quiz Builder -->
+        <div class="screen active" id="screen-quiz">
+          <div class="qb-title" data-vi="TẠO BÀI KIỂM TRA" data-en="BUILD YOUR QUIZ">TẠO BÀI KIỂM TRA</div>
+          <div class="qb-sub" data-vi="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE"
+            data-en="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE">AI-POWERED TESTS TO TRACK YOUR PERFORMANCE</div>
+          <div class="qb-form">
+            <div class="qb-field">
+              <label>📚 <span data-vi="MÔN HỌC" data-en="SUBJECT">MÔN HỌC</span></label>
+              <select class="qb-select">
+                <option data-vi="Toán học" data-en="Mathematics">Toán học</option>
+                <option data-vi="Vật lý" data-en="Physics">Vật lý</option>
+                <option data-vi="Hóa học" data-en="Chemistry">Hóa học</option>
+              </select>
+            </div>
+            <div class="qb-field">
+              <label>🎓 <span data-vi="KHỐI LỚP" data-en="GRADE">KHỐI LỚP</span></label>
+              <select class="qb-select">
+                <option data-vi="Lớp 10" data-en="Grade 10">Lớp 10</option>
+                <option data-vi="Lớp 11" data-en="Grade 11">Lớp 11</option>
+                <option data-vi="Lớp 12" data-en="Grade 12">Lớp 12</option>
+              </select>
+            </div>
+            <div class="qb-field full">
+              <label>⊙ <span data-vi="CHỦ ĐỀ / BÀI HỌC *" data-en="TOPIC / LESSON *">CHỦ ĐỀ / BÀI HỌC *</span></label>
+              <input class="qb-input" type="text" placeholder=""
+                data-placeholder-vi="VD: Tập hợp và các phép toán tập hợp"
+                data-placeholder-en="E.g.: Sets and set operations" />
+            </div>
+            <div class="qb-field">
+              <label>⚙ <span data-vi="DẠNG CÂU HỎI" data-en="QUESTION TYPE">DẠNG CÂU HỎI</span></label>
+              <select class="qb-select">
+                <option data-vi="Trắc nghiệm" data-en="Multiple Choice">Trắc nghiệm</option>
+                <option data-vi="Đúng / Sai" data-en="True / False">Đúng / Sai</option>
+              </select>
+            </div>
+            <div class="qb-field">
+              <label>⚡ <span data-vi="SỐ LƯỢNG CÂU" data-en="QUESTION COUNT">SỐ LƯỢNG CÂU</span></label>
+              <select class="qb-select">
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>50</option>
+              </select>
+            </div>
+            <button class="qb-submit" data-vi="✦ TẠO ĐỀ NGAY →" data-en="✦ GENERATE QUIZ →">✦ TẠO ĐỀ NGAY →</button>
+          </div>
+        </div>
+
+        <!-- Screen: Dashboard -->
+        <div class="screen" id="screen-dash">
+          <div class="db-title">⊞ <span data-vi="TỔNG QUAN" data-en="OVERVIEW">TỔNG QUAN</span></div>
+          <div class="db-cards">
+            <div class="db-card">
+              <div class="db-card-icon">🎯</div>
+              <div>
+                <div class="db-label" data-vi="TỔNG SỐ LƯỢT LÀM BÀI" data-en="TOTAL SESSIONS">TỔNG SỐ LƯỢT LÀM BÀI</div>
+                <div class="db-num">24</div>
+              </div>
+            </div>
+            <div class="db-card">
+              <div class="db-card-icon">⚠️</div>
+              <div>
+                <div class="db-label" data-vi="TỔNG SỐ LỖI" data-en="TOTAL ERRORS">TỔNG SỐ LỖI</div>
+                <div class="db-num">47</div>
+              </div>
+            </div>
+            <div class="db-card">
+              <div class="db-card-icon">📖</div>
+              <div>
+                <div class="db-label" data-vi="LỖI THƯỜNG GẶP NHẤT" data-en="MOST COMMON ERROR">LỖI THƯỜNG GẶP NHẤT
+                </div>
+                <div class="db-num" style="font-size:1rem;" data-vi="Lỗi khái niệm" data-en="Concept Error">Lỗi khái
+                  niệm</div>
+              </div>
+            </div>
+          </div>
+          <div class="db-charts">
+            <div class="db-chart-card">
+              <div class="db-chart-title">📊 <span data-vi="BIỂU ĐỒ KỸ NĂNG HỌC TẬP" data-en="SKILL CHART">BIỂU ĐỒ KỸ
+                  NĂNG HỌC TẬP</span></div>
+              <div class="mini-bars">
+                <div class="mini-bar filled" style="height:80%;"></div>
+                <div class="mini-bar filled" style="height:60%;"></div>
+                <div class="mini-bar half" style="height:40%;"></div>
+                <div class="mini-bar filled" style="height:90%;"></div>
+                <div class="mini-bar half" style="height:30%;"></div>
+                <div class="mini-bar filled" style="height:70%;"></div>
+              </div>
+            </div>
+            <div class="db-chart-card">
+              <div class="db-chart-title">⏱ <span data-vi="THỐNG KÊ LỖI" data-en="ERROR STATISTICS">THỐNG KÊ LỖI</span>
+              </div>
+              <div style="padding:.5rem 0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi khái niệm"
+                    data-en="Concept error">Lỗi khái niệm</span>
+                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
+                    <div style="width:70%;height:100%;background:var(--orange);border-radius:100px;"></div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi tính toán"
+                    data-en="Calculation error">Lỗi tính toán</span>
+                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
+                    <div style="width:45%;height:100%;background:var(--orange);border-radius:100px;opacity:.6;"></div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi ký hiệu" data-en="Symbol error">Lỗi
+                    ký hiệu</span>
+                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
+                    <div style="width:25%;height:100%;background:var(--orange);border-radius:100px;opacity:.4;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen: Flashcard -->
+        <div class="screen" id="screen-flash">
+          <div class="fc-progress" data-vi="TIẾN ĐỘ: 1 / 10" data-en="PROGRESS: 1 / 10">TIẾN ĐỘ: 1 / 10</div>
+          <div class="fc-bar">
+            <div class="fill"></div>
+          </div>
+          <div class="fc-card">
+            <div class="fc-icon">✦</div>
+            <div class="fc-text"
+              data-vi="Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp được gọi là các phần tử của tập hợp đó."
+              data-en="A set is a well-defined collection of distinct objects. The objects in a set are called the elements of that set.">
+              Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp được
+              gọi là các phần tử của tập hợp đó.
+            </div>
+            <div class="fc-hint" data-vi="LẬT LẠI" data-en="FLIP CARD">LẬT LẠI</div>
+          </div>
+          <div class="fc-actions">
+            <div class="fc-btn" data-vi="← THẺ TRƯỚC" data-en="← PREVIOUS">← THẺ TRƯỚC</div>
+            <div class="fc-btn next" data-vi="THẺ TIẾP THEO →" data-en="NEXT CARD →">THẺ TIẾP THEO →</div>
+          </div>
+        </div>
+
+        <!-- Screen: Forum -->
+        <div class="screen" id="screen-forum">
+          <div class="forum-title">💬 <span data-vi="DIỄN ĐÀN" data-en="FORUM">DIỄN ĐÀN</span></div>
+          <div class="forum-sub" data-vi="CỘNG ĐỒNG HỌC TẬP SHARK EMPTI" data-en="SHARK EMPTI LEARNING COMMUNITY">CỘNG
+            ĐỒNG HỌC TẬP SHARK EMPTI</div>
+          <div class="forum-search">
+            🔍 <span style="color:var(--text-muted);font-size:.82rem;"
+              data-vi="Tìm kiếm bài viết theo tiêu đề hoặc nội dung..."
+              data-en="Search posts by title or content...">Tìm kiếm bài viết theo tiêu đề hoặc nội dung...</span>
+          </div>
+          <div class="forum-post">
+            <div class="forum-post-header">
+              <div class="avatar">X</div>
+              <div class="post-author" data-vi="Xuân Bách Lê" data-en="Xuân Bách Lê">Xuân Bách Lê</div>
+              <div class="post-time">19/04/2026</div>
+            </div>
+            <div class="post-title" data-vi="Hỏi về ký hiệu tập hợp trong toán học"
+              data-en="Question about set notation in mathematics">Hỏi về ký hiệu tập hợp trong toán học</div>
+            <div class="post-preview" data-vi="Mình đang ôn phần tập hợp, không hiểu tại sao dùng dấu ∈ thay vì ⊂..."
+              data-en="I'm reviewing sets and don't understand why ∈ is used instead of ⊂...">Mình đang ôn phần tập hợp,
+              không hiểu tại sao dùng dấu ∈ thay vì ⊂...</div>
+            <div class="post-actions">
+              <div class="post-action">❤️ <span>3</span></div>
+              <div class="post-action">💬 <span>5</span></div>
+            </div>
+          </div>
+          <div class="forum-post">
+            <div class="forum-post-header">
+              <div class="avatar" style="background:#888;">:D</div>
+              <div class="post-author" style="color:var(--text-sub);" data-vi="Nguyễn Anh Tú" data-en="Nguyễn Anh Tú">
+                Nguyễn Anh Tú</div>
+              <div class="post-time">18/04/2026</div>
+            </div>
+            <div class="post-title" data-vi="Chia sẻ tip ôn tập Định luật Newton hiệu quả"
+              data-en="Tips for studying Newton's Laws effectively">Chia sẻ tip ôn tập Định luật Newton hiệu quả</div>
+            <div class="post-preview" data-vi="Sau khi dùng Shark Empti 2 tuần, mình đã cải thiện điểm Vật lý rõ rệt..."
+              data-en="After using Shark Empti for 2 weeks, my Physics score improved significantly...">Sau khi dùng
+              Shark Empti 2 tuần, mình đã cải thiện điểm Vật lý rõ rệt...</div>
+            <div class="post-actions">
+              <div class="post-action">❤️ <span>12</span></div>
+              <div class="post-action">💬 <span>8</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /preview-frame -->
+    </div>
+  </section>
+
+  <!-- ─── DESIGN HIGHLIGHTS ─────────────────────────────────────── -->
+  <section id="design">
+    <div class="container">
+      <div class="section-tag reveal" data-vi="Triết lý thiết kế" data-en="Design Philosophy">Triết lý thiết kế</div>
+      <h2 class="section-title reveal d1" data-vi="UX được xây dựng<br>để học tập thật sự"
+        data-en="UX built for<br>real learning">UX được xây dựng<br>để học tập thật sự</h2>
+      <div class="design-grid">
+        <div class="design-card reveal d1">
+          <div class="big-icon">🌗</div>
+          <div class="design-card-title" data-vi="Dark & Light Mode" data-en="Dark & Light Mode">Dark & Light Mode</div>
+          <div class="design-card-desc"
+            data-vi="Giao diện tối chuyên sâu cho buổi tối, giao diện sáng ấm áp cho ban ngày. Chuyển đổi một chạm, dễ chịu cho mắt trong mọi điều kiện ánh sáng."
+            data-en="Deep dark interface for night sessions, warm light interface for daytime. One-tap switch, easy on the eyes in any lighting condition.">
+            Giao diện tối chuyên sâu cho buổi tối, giao diện sáng ấm áp cho ban ngày. Chuyển đổi một chạm, dễ chịu cho
+            mắt trong mọi điều kiện ánh sáng.</div>
+        </div>
+        <div class="design-card reveal d2">
+          <div class="big-icon">🌐</div>
+          <div class="design-card-title" data-vi="Song ngữ Việt - Anh" data-en="Vietnamese & English">Song ngữ Việt -
+            Anh</div>
+          <div class="design-card-desc"
+            data-vi="Toàn bộ giao diện hỗ trợ cả Tiếng Việt và Tiếng Anh. Chuyển ngôn ngữ tức thì, không cần tải lại trang."
+            data-en="The entire interface supports both Vietnamese and English. Instant language switch, no page reload required.">
+            Toàn bộ giao diện hỗ trợ cả Tiếng Việt và Tiếng Anh. Chuyển ngôn ngữ tức thì, không cần tải lại trang.</div>
+        </div>
+        <div class="design-card reveal d3">
+          <div class="big-icon">∑</div>
+          <div class="design-card-title" data-vi="Hỗ trợ LaTeX" data-en="LaTeX Support">Hỗ trợ LaTeX</div>
+          <div class="design-card-desc"
+            data-vi="Ghi chú và bình luận diễn đàn hỗ trợ LaTeX đầy đủ. Viết công thức toán học đẹp, chuẩn khoa học — không cần phần mềm ngoài."
+            data-en="Notes and forum comments support full LaTeX. Write beautiful, scientifically accurate math formulas — no external software needed.">
+            Ghi chú và bình luận diễn đàn hỗ trợ LaTeX đầy đủ. Viết công thức toán học đẹp, chuẩn khoa học — không cần
+            phần mềm ngoài.</div>
+        </div>
+        <div class="design-card reveal d4">
+          <div class="big-icon">🎯</div>
+          <div class="design-card-title" data-vi="Luyện đúng trọng tâm" data-en="Targeted Practice">Luyện đúng trọng tâm
+          </div>
+          <div class="design-card-desc"
+            data-vi="Tính năng 'Luyện lỗi sai' tự động tập hợp những điểm bạn hay mắc lỗi để luyện lại. Không lãng phí thời gian vào những gì bạn đã biết."
+            data-en="The 'Error Practice' feature auto-collects your weak spots for targeted re-practice. No wasted time on what you already know.">
+            Tính năng 'Luyện lỗi sai' tự động tập hợp những điểm bạn hay mắc lỗi để luyện lại. Không lãng phí thời gian
+            vào những gì bạn đã biết.</div>
+        </div>
+        <div class="design-card reveal d5">
+          <div class="big-icon">📅</div>
+          <div class="design-card-title" data-vi="Lịch hoạt động" data-en="Activity Calendar">Lịch hoạt động</div>
+          <div class="design-card-desc"
+            data-vi="Theo dõi sự chăm chỉ theo từng ngày với lịch hoạt động trực quan. Xây dựng streak học tập, tạo thói quen bền vững."
+            data-en="Track daily dedication with a visual activity calendar. Build study streaks and establish lasting learning habits.">
+            Theo dõi sự chăm chỉ theo từng ngày với lịch hoạt động trực quan. Xây dựng streak học tập, tạo thói quen bền
+            vững.</div>
+        </div>
+        <div class="design-card reveal d6">
+          <div class="big-icon">👤</div>
+          <div class="design-card-title" data-vi="Hồ sơ học tập" data-en="Learning Profile">Hồ sơ học tập</div>
+          <div class="design-card-desc"
+            data-vi="Mỗi người học có hồ sơ riêng với thống kê cá nhân, tiểu sử và lịch sử hoạt động. Kết nối và tìm kiếm bạn học trong cộng đồng."
+            data-en="Every learner has a personal profile with stats, bio, and activity history. Connect and find study partners in the community.">
+            Mỗi người học có hồ sơ riêng với thống kê cá nhân, tiểu sử và lịch sử hoạt động. Kết nối và tìm kiếm bạn học
+            trong cộng đồng.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY MATTERS ───────────────────────────────────────────── -->
+  <section id="why">
+    <div class="container">
+      <div class="why-split">
+        <!-- Compare Table -->
+        <div class="reveal-left">
+          <div class="section-tag" data-vi="So sánh" data-en="Comparison">So sánh</div>
+          <h2 class="section-title" data-vi="Vì sao<br>khác biệt?" data-en="Why is it<br>different?">Vì sao<br>khác
+            biệt?</h2>
+          <div class="compare-table" style="margin-top:2rem;">
+            <div class="compare-head">
+              <span data-vi="Tính năng" data-en="Feature">Tính năng</span>
+              <span data-vi="Chatbot AI" data-en="AI Chatbot">Chatbot AI</span>
+              <span data-vi="Shark Empti" data-en="Shark Empti">Shark Empti</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Tạo đề theo yêu cầu" data-en="On-demand quiz generation">Tạo đề theo yêu
+                cầu</span>
+              <span class="cmp-no">~</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Phân tích năng lực cá nhân" data-en="Personal skill analysis">Phân tích
+                năng lực cá nhân</span>
+              <span class="cmp-no">✕</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Luyện lại lỗi sai" data-en="Error re-practice">Luyện lại lỗi sai</span>
+              <span class="cmp-no">✕</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Flashcard ôn lý thuyết" data-en="Theory flashcards">Flashcard ôn lý
+                thuyết</span>
+              <span class="cmp-no">✕</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Cộng đồng & diễn đàn" data-en="Community & forum">Cộng đồng & diễn
+                đàn</span>
+              <span class="cmp-no">✕</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+            <div class="compare-row">
+              <span class="cmp-feat" data-vi="Ghi chú hỗ trợ LaTeX" data-en="LaTeX notes">Ghi chú hỗ trợ LaTeX</span>
+              <span class="cmp-no">~</span>
+              <span class="cmp-yes">✦</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right -->
+        <div class="reveal-right">
+          <div class="why-quote"
+            data-vi='"Học không chỉ là nhận thông tin — mà là biết mình đang ở đâu và cần đi đâu tiếp theo."'
+            data-en="&quot;Learning isn&apos;t just absorbing information — it&apos;s knowing where you are and where to go next.&quot;">
+            "Học không chỉ là nhận thông tin — mà là biết mình đang ở đâu và cần đi đâu tiếp theo."
+          </div>
+          <p class="section-desc"
+            data-vi="Shark Empti được xây dựng với triết lý đơn giản: trao cho người học quyền kiểm soát hành trình học của chính mình. Không phụ thuộc. Không bị động. Chỉ cần mở app và bắt đầu."
+            data-en="Shark Empti was built on a simple philosophy: give learners full control over their own learning journey. No dependency. No passivity. Just open the app and start.">
+            Shark Empti được xây dựng với triết lý đơn giản: trao cho người học quyền kiểm soát hành trình học của chính
+            mình. Không phụ thuộc. Không bị động. Chỉ cần mở app và bắt đầu.
+          </p>
+          <div class="tech-badges" style="margin-top:2rem;">
+            <div class="section-tag" style="margin-bottom:.5rem;width:100%;" data-vi="Công nghệ sử dụng"
+              data-en="Built with">Công nghệ sử dụng</div>
+            <div class="tech-badge"><span class="dot"></span> Next.js</div>
+            <div class="tech-badge"><span class="dot"></span> Tailwind CSS</div>
+            <div class="tech-badge"><span class="dot"></span> Gemini AI</div>
+            <div class="tech-badge"><span class="dot"></span> Firebase</div>
+            <div class="tech-badge"><span class="dot"></span> TypeScript</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COMMUNITY ─────────────────────────────────────────────── -->
+  <section id="community">
+    <div class="container">
+      <div class="section-tag reveal" data-vi="Cộng đồng" data-en="Community">Cộng đồng</div>
+      <h2 class="section-title reveal d1" data-vi="Học một mình<br>hay học cùng nhau?"
+        data-en="Study alone<br>or together?">Học một mình<br>hay học cùng nhau?</h2>
+      <p class="section-desc reveal d2"
+        data-vi="Shark Empti có cả hai. Dù bạn thích yên tĩnh hay cần đồng hành — nền tảng luôn có mặt."
+        data-en="Shark Empti has both. Whether you prefer silence or companionship — the platform is always there.">
+        Shark Empti có cả hai. Dù bạn thích yên tĩnh hay cần đồng hành — nền tảng luôn có mặt.</p>
+      <div class="community-grid">
+        <div class="comm-card accent reveal d1">
+          <div class="comm-icon">💬</div>
+          <div class="comm-title" data-vi="Diễn đàn học tập" data-en="Learning Forum">Diễn đàn học tập</div>
+          <div class="comm-desc"
+            data-vi="Đặt câu hỏi, chia sẻ bài giải, thảo luận về chủ đề học tập. Cộng đồng học sinh hỗ trợ lẫn nhau với LaTeX để trình bày công thức rõ ràng."
+            data-en="Ask questions, share solutions, discuss learning topics. Student community supports each other with LaTeX for clear formula presentation.">
+            Đặt câu hỏi, chia sẻ bài giải, thảo luận về chủ đề học tập. Cộng đồng học sinh hỗ trợ lẫn nhau với LaTeX để
+            trình bày công thức rõ ràng.</div>
+        </div>
+        <div class="comm-card reveal d2">
+          <div class="comm-icon">📅</div>
+          <div class="comm-title" data-vi="Lịch hoạt động" data-en="Activity Calendar">Lịch hoạt động</div>
+          <div class="comm-desc" data-vi="Theo dõi sự chăm chỉ theo ngày." data-en="Track daily dedication.">Theo dõi sự
+            chăm chỉ theo ngày.</div>
+          <div class="mini-cal">
+            <div class="cal-cell"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell"></div>
+            <div class="cal-cell active"></div>
+            <div class="cal-cell active"></div>
+          </div>
+        </div>
+        <div class="comm-card reveal d3">
+          <div class="comm-icon">👤</div>
+          <div class="comm-title" data-vi="Hồ sơ & Kết nối" data-en="Profile & Connect">Hồ sơ & Kết nối</div>
+          <div class="comm-desc"
+            data-vi="Xây dựng profile cá nhân, tìm bạn học cùng chủ đề và chủ động kết nối trong cộng đồng."
+            data-en="Build a personal profile, find study partners with shared topics, and connect proactively in the community.">
+            Xây dựng profile cá nhân, tìm bạn học cùng chủ đề và chủ động kết nối trong cộng đồng.</div>
+          <div class="streak-num">🔥 4</div>
+          <div class="streak-label" data-vi="ngày liên tiếp" data-en="days in a row">ngày liên tiếp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ──────────────────────────────────────────────── -->
+  <section id="cta-final">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-tag reveal">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            <span data-vi="Miễn phí · Không cần cài đặt" data-en="Free · No installation needed">Miễn phí · Không cần
+              cài đặt</span>
+          </div>
+        </div>
+        <h2 class="cta-headline reveal d1">
+          <span data-vi="SẴN SÀNG" data-en="READY TO">SẴN SÀNG</span><br>
+          <span class="orange" data-vi="BẮT ĐẦU CHƯA?" data-en="GET STARTED?">BẮT ĐẦU CHƯA?</span>
+        </h2>
+        <p class="cta-sub reveal d2"
+          data-vi="Shark Empti đang chạy live. Truy cập ngay, tạo bài kiểm tra đầu tiên, và khám phá cách học thông minh hơn — không cần tải về, không cần đăng ký phức tạp."
+          data-en="Shark Empti is live right now. Jump in, create your first quiz, and discover how to learn smarter — no downloads, no complex registration.">
+          Shark Empti đang chạy live. Truy cập ngay, tạo bài kiểm tra đầu tiên, và khám phá cách học thông minh hơn —
+          không cần tải về, không cần đăng ký phức tạp.
+        </p>
+        <div class="cta-actions reveal d3">
+          <a href="https://shark-empti.vercel.app" target="_blank" class="btn-primary"
+            style="padding:1rem 2.4rem;font-size:1rem;">
+            <span data-vi="✦ Trải nghiệm Shark Empti" data-en="✦ Experience Shark Empti">✦ Trải nghiệm Shark
+              Empti</span>
+          </a>
+        </div>
+        <div class="cta-note reveal d4" data-vi="Được xây dựng bởi nhóm VTS - Cá Mập Laze"
+          data-en="Built by the VTS - Cá Mập Laze team">
+          Được xây dựng bởi nhóm VTS - Cá Mập Laze
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="nav-logo">
+          <div class="logo-icon" style="width:28px;height:28px;font-size:.85rem;">✦</div>
+          <div class="brand" style="font-size:1rem;">
+            SHARK EMPTI
+            <span data-vi="Nền Tảng Học Tập Thông Minh" data-en="Intelligent Learning Platform">Nền Tảng Học Tập Thông
+              Minh</span>
+          </div>
+        </div>
+        <div class="footer-copy" data-vi="© 2026 Shark Empti. All rights reserved."
+          data-en="© 2026 Shark Empti. All rights reserved.">© 2026 Shark Empti. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── SCRIPTS ────────────────────────────────────────────────── -->
+  <script>
+    /* ── THEME TOGGLE ────────────────────────────────────────────── */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function setTheme(t) {
+      html.setAttribute('data-theme', t);
+      themeIcon.textContent = t === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('se-theme', t);
+    }
+    themeBtn.addEventListener('click', () => {
+      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+    // init from storage or system preference
+    const saved = localStorage.getItem('se-theme');
+    if (saved) {
+      setTheme(saved);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    /* ── LANGUAGE TOGGLE ─────────────────────────────────────────── */
+    const langBtn = document.getElementById('langToggle');
+    const langLabel = document.getElementById('langLabel');
+
+    function applyLang(lang) {
+      html.setAttribute('data-lang', lang);
+      langLabel.textContent = lang === 'vi' ? 'EN' : 'VI';
+      document.querySelectorAll('[data-vi]').forEach(el => {
+        const content = el.getAttribute('data-' + lang);
+        if (!content) return;
+        if (el.tagName === 'INPUT') {
+          // handle placeholder separately
+        } else if (el.children.length === 0) {
+          el.textContent = content;
+        } else {
+          el.innerHTML = content;
+        }
+      });
+      // placeholder handling
+      document.querySelectorAll('[data-placeholder-vi]').forEach(el => {
+        el.placeholder = el.getAttribute('data-placeholder-' + lang) || '';
+      });
+      // update title
+      document.title = lang === 'vi'
+        ? 'Shark Empti — Nền Tảng Học Tập Thông Minh'
+        : 'Shark Empti — Intelligent Learning Platform';
+      // update select options
+      document.querySelectorAll('select option[data-vi]').forEach(opt => {
+        const v = opt.getAttribute('data-' + lang);
+        if (v) opt.textContent = v;
+      });
+      localStorage.setItem('se-lang', lang);
+    }
+
+    langBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-lang');
+      applyLang(current === 'vi' ? 'en' : 'vi');
+    });
+
+    const savedLang = localStorage.getItem('se-lang');
+    if (savedLang) applyLang(savedLang);
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    /* ── TAB SWITCHING ───────────────────────────────────────────── */
+    function switchTab(id) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(id));
+      });
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById('screen-' + id);
+      if (target) {
+        target.classList.add('active');
+        // re-apply lang
+        const lang = html.getAttribute('data-lang');
+        target.querySelectorAll('[data-vi]').forEach(el => {
+          const content = el.getAttribute('data-' + lang);
+          if (!content) return;
+          if (el.children.length === 0) el.textContent = content;
+          else el.innerHTML = content;
+        });
+      }
+    }
+
+    /* ── NAV ACTIVE ON SCROLL ────────────────────────────────────── */
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.boxShadow = window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.3)' : 'none';
+    });
+  </script>
+
+</body>
+
+</html>
