@@ -384,7 +384,7 @@
       font-weight: 900;
       text-transform: uppercase;
       font-size: clamp(3.2rem, 7vw, 6rem);
-      line-height: .95;
+      line-height: 1.08;
       letter-spacing: -0.01em;
       margin-bottom: 1.4rem;
     }
@@ -720,7 +720,7 @@
       font-weight: 900;
       text-transform: uppercase;
       font-size: clamp(2.4rem, 5vw, 3.8rem);
-      line-height: .95;
+      line-height: 1.1;
       letter-spacing: -0.01em;
       margin-bottom: 1rem;
     }
@@ -1215,83 +1215,368 @@
       display: block;
     }
 
-    /* Screen: Quiz Builder */
+    /* ── Screen: Quiz Builder ─────────────────────────────────── */
+    #screen-quiz {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* animated grid backdrop inside the preview */
+    .qb-backdrop {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at 50% 0%, black 10%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .qb-glow-top {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, var(--orange-glow-strong) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .qb-inner {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 2rem 2rem;
+    }
+
+    /* top navigation bar (mimics the real app nav) */
+    .qb-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .qb-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .qb-nav-logo .qb-logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      color: #fff;
+      box-shadow: 0 0 12px var(--orange-glow-strong);
+    }
+
+    .qb-nav-logo .qb-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--orange);
+    }
+
+    .qb-nav-logo .qb-version {
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .15rem .5rem;
+    }
+
+    .qb-nav-icons {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .qb-nav-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      color: var(--text-sub);
+    }
+
+    .qb-nav-icon.active-icon {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 12px var(--orange-glow-strong);
+    }
+
     .qb-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       text-transform: uppercase;
       color: var(--orange);
       text-align: center;
-      margin-bottom: .4rem;
+      margin-bottom: .3rem;
+      text-shadow: 0 0 40px var(--orange-glow-strong);
+      letter-spacing: .02em;
     }
 
     .qb-sub {
       text-align: center;
-      font-size: .72rem;
-      letter-spacing: .14em;
+      font-size: .7rem;
+      letter-spacing: .16em;
       color: var(--text-muted);
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
 
     .qb-form {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: .8rem;
-      max-width: 600px;
+      gap: .75rem;
+      max-width: 620px;
       margin: 0 auto;
     }
 
     .qb-field label {
-      font-size: .68rem;
+      font-size: .64rem;
       font-weight: 700;
-      letter-spacing: .1em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--orange);
       display: flex;
       align-items: center;
       gap: .3rem;
-      margin-bottom: .4rem;
+      margin-bottom: .35rem;
     }
 
     .qb-select {
       width: 100%;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: .75rem 1rem;
+      border-radius: 14px;
+      padding: .8rem 1rem;
       font-size: .82rem;
       color: var(--text);
       appearance: none;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      transition: border-color .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+
+    .qb-select:hover {
+      border-color: rgba(232, 123, 42, .4);
+    }
+
+    .qb-select:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange-glow);
     }
 
     .qb-field.full {
       grid-column: 1/-1;
     }
 
+    /* Topic input — glowing highlighted field */
+    .qb-input-wrapper {
+      position: relative;
+    }
+
+    .qb-input-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--orange), transparent 60%);
+      opacity: .5;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .qb-input {
+      position: relative;
+      z-index: 1;
       width: 100%;
       background: var(--bg2);
       border: 1px solid var(--orange);
-      border-radius: 12px;
-      padding: .75rem 1rem;
+      border-radius: 14px;
+      padding: .8rem 1rem;
       font-size: .82rem;
+      color: var(--text);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      box-shadow: 0 0 20px var(--orange-glow), inset 0 1px 0 rgba(255, 255, 255, .06);
+      transition: box-shadow .2s;
+    }
+
+    .qb-input:focus {
+      outline: none;
+      box-shadow: 0 0 32px var(--orange-glow-strong);
+    }
+
+    /* Difficulty level chips */
+    .qb-chips {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .qb-chip {
+      flex: 1;
+      min-width: 0;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .55rem .5rem;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .qb-chip.selected {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px var(--orange-glow-strong);
+    }
+
+    .qb-chip:not(.selected):hover {
+      border-color: var(--border-hover);
       color: var(--text);
     }
 
-    .qb-submit {
+    /* Submit button with shimmer */
+    .qb-submit-wrap {
       grid-column: 1/-1;
-      background: var(--orange);
+      position: relative;
+    }
+
+    .qb-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--orange-dark) 0%, var(--orange) 50%, var(--orange-light) 100%);
+      background-size: 200% 100%;
       color: #fff;
       border: none;
-      border-radius: 12px;
-      padding: .9rem;
-      font-size: .85rem;
-      font-weight: 700;
-      letter-spacing: .08em;
+      border-radius: 14px;
+      padding: 1rem;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .12em;
       text-transform: uppercase;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform .15s, box-shadow .2s;
+      box-shadow: 0 6px 28px var(--orange-glow-strong);
+      animation: btn-shimmer 3s ease infinite;
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+
+    @keyframes btn-shimmer {
+      0% {
+        background-position: 100% 0;
+      }
+
+      50% {
+        background-position: 0% 0;
+      }
+
+      100% {
+        background-position: 100% 0;
+      }
+    }
+
+    .qb-submit::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+      animation: qb-shine 2.4s ease infinite;
+    }
+
+    @keyframes qb-shine {
+      from {
+        left: -60%;
+      }
+
+      to {
+        left: 120%;
+      }
+    }
+
+    .qb-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px var(--orange-glow-strong);
+    }
+
+    /* floating Shark Guru chip inside screen */
+    .qb-guru-chip {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--orange);
+      border-radius: 100px;
+      padding: .5rem 1rem .5rem .5rem;
+      width: fit-content;
+      margin: 1rem auto 0;
+      box-shadow: 0 6px 24px var(--orange-glow-strong);
+      animation: guru-bob 3s ease-in-out infinite;
+    }
+
+    @keyframes guru-bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    .qb-guru-avatar {
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, .25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      color: #F2F2F5;
+    }
+
+    .qb-guru-text {
+      font-size: .74rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .04em;
     }
 
     /* Screen: Dashboard */
@@ -1445,6 +1730,7 @@
 
     .fc-icon {
       font-size: 2.5rem;
+      color: var(--orange);
       margin-bottom: 1rem;
     }
 
@@ -1867,7 +2153,7 @@
       font-weight: 900;
       text-transform: uppercase;
       font-size: clamp(3rem, 7vw, 5.5rem);
-      line-height: .95;
+      line-height: 1.1;
       margin-bottom: 1.4rem;
     }
 
@@ -2031,6 +2317,708 @@
     nav {
       transition: none;
     }
+
+    /* ─── HERO FEATURE TAGS ───────────────────────────────────── */
+    .hero-feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-ftag {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .3rem .75rem;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+
+    .hero-ftag:hover {
+      border-color: var(--border-hover);
+      color: var(--orange);
+      background: var(--orange-glow);
+    }
+
+    .hero-ftag .ftag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ─── ENHANCED DASHBOARD SCREEN ──────────────────────────── */
+    #screen-dash {
+      padding: 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .db-inner {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .db-glow {
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, var(--orange-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .db-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+
+    .db-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 0;
+    }
+
+    .db-date-badge {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .25rem .7rem;
+    }
+
+    .db-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: .7rem;
+      margin-bottom: 1rem;
+    }
+
+    .db-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: .9rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .db-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .db-card.accent {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      border-color: transparent;
+    }
+
+    .db-card.accent .db-label,
+    .db-card.accent .db-num {
+      color: #fff;
+    }
+
+    .db-card-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .db-label {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .1rem;
+    }
+
+    .db-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .db-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+    }
+
+    .db-chart-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: .9rem 1rem;
+    }
+
+    .db-chart-title {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: .7rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    /* animated skill bars */
+    .mini-bars {
+      display: flex;
+      gap: .35rem;
+      align-items: flex-end;
+      height: 72px;
+    }
+
+    .mini-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-bar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--orange);
+      border-radius: 4px 4px 0 0;
+      transition: height .8s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .mini-bar[data-h]::after {
+      height: attr(data-h);
+    }
+
+    /* JS will handle the animation via inline style */
+    .mini-bar.filled {
+      background: var(--orange);
+      opacity: .9;
+    }
+
+    .mini-bar.half {
+      background: var(--orange);
+      opacity: .45;
+    }
+
+    /* error stats rows */
+    .db-error-row {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .55rem;
+    }
+
+    .db-error-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .db-error-label {
+      font-size: .7rem;
+      color: var(--text-sub);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .db-error-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .db-error-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 100px;
+    }
+
+    .db-error-pct {
+      font-size: .65rem;
+      font-weight: 700;
+      color: var(--orange);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    /* strengths / weaknesses panel */
+    .db-analysis {
+      margin-top: .7rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+    }
+
+    .db-analysis-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: .9rem 1rem;
+    }
+
+    .db-analysis-title {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .db-analysis-title.strength {
+      color: #4ade80;
+    }
+
+    .db-analysis-title.weakness {
+      color: #f87171;
+    }
+
+    .db-analysis-item {
+      font-size: .72rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+      padding-left: .8rem;
+      position: relative;
+      margin-bottom: .2rem;
+    }
+
+    .db-analysis-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+    }
+
+    .db-analysis-item.strength::before {
+      color: #4ade80;
+    }
+
+    .db-analysis-item.weakness::before {
+      color: #f87171;
+    }
+
+    /* ─── ENHANCED FLASHCARD SCREEN ───────────────────────────── */
+    #screen-flash {
+      padding: 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fc-inner {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .fc-glow {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 250px;
+      background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .fc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .8rem;
+    }
+
+    .fc-progress {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .fc-cancel {
+      font-size: .7rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .fc-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+      overflow: hidden;
+    }
+
+    .fc-bar .fill {
+      height: 100%;
+      width: 33%;
+      background: var(--orange);
+      border-radius: 100px;
+      transition: width .4s;
+    }
+
+    /* 3D flip card container */
+    .fc-scene {
+      perspective: 800px;
+      margin-bottom: 1.2rem;
+    }
+
+    .fc-card {
+      background: var(--card);
+      border: 2px solid rgba(232, 123, 42, .35);
+      border-radius: 22px;
+      padding: 2.2rem 2rem;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .6s cubic-bezier(.22, 1, .36, 1), box-shadow .3s;
+      box-shadow: 0 8px 32px var(--orange-glow), inset 0 1px 0 rgba(255, 255, 255, .06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fc-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, var(--orange-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .fc-card:hover {
+      transform: rotateY(8deg) translateY(-4px);
+      box-shadow: 0 16px 48px var(--orange-glow-strong);
+    }
+
+    .fc-icon {
+      font-size: 2.2rem;
+      margin-bottom: .8rem;
+      filter: drop-shadow(0 0 12px var(--orange-glow-strong));
+    }
+
+    .fc-mode-badge {
+      position: absolute;
+      top: .9rem;
+      right: .9rem;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .15rem .6rem;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .fc-text {
+      font-size: .95rem;
+      line-height: 1.65;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .fc-hint {
+      font-size: .66rem;
+      color: var(--orange);
+      margin-top: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+    }
+
+    .fc-actions {
+      display: flex;
+      gap: .7rem;
+    }
+
+    .fc-btn {
+      flex: 1;
+      padding: .8rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s;
+      letter-spacing: .04em;
+    }
+
+    .fc-btn:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .fc-btn.next {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 16px var(--orange-glow-strong);
+    }
+
+    .fc-btn.next:hover {
+      box-shadow: 0 8px 24px var(--orange-glow-strong);
+    }
+
+    /* topic chips row */
+    .fc-topics {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin-bottom: .8rem;
+    }
+
+    .fc-topic-chip {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .25rem .7rem;
+      font-size: .67rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .fc-topic-chip.active {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 3px 10px var(--orange-glow-strong);
+    }
+
+    /* ─── ENHANCED FORUM SCREEN ───────────────────────────────── */
+    #screen-forum {
+      padding: 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .forum-inner {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .forum-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: .8rem;
+    }
+
+    .forum-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 0;
+    }
+
+    .forum-new-btn {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: .35rem .9rem;
+      font-size: .72rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 3px 12px var(--orange-glow-strong);
+    }
+
+    .forum-new-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-1px);
+    }
+
+    .forum-sub {
+      font-size: .65rem;
+      color: var(--text-muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+
+    .forum-search {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .6rem 1.1rem;
+      font-size: .8rem;
+      color: var(--text);
+      margin-bottom: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      transition: border-color .2s;
+    }
+
+    .forum-search:focus-within {
+      border-color: var(--orange);
+    }
+
+    .forum-post {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: .9rem 1.1rem;
+      margin-bottom: .6rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+
+    .forum-post:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--orange-glow);
+    }
+
+    .forum-post-header {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: .4rem;
+    }
+
+    .forum-post .avatar {
+      width: 30px;
+      height: 30px;
+      background: var(--orange);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px var(--orange-glow-strong);
+    }
+
+    .post-author {
+      font-weight: 700;
+      font-size: .78rem;
+      color: var(--orange);
+    }
+
+    .post-time {
+      font-size: .63rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .post-title {
+      font-weight: 700;
+      font-size: .86rem;
+      margin-bottom: .2rem;
+    }
+
+    .post-preview {
+      font-size: .76rem;
+      color: var(--text-sub);
+      line-height: 1.45;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: .8rem;
+      margin-top: .5rem;
+      align-items: center;
+    }
+
+    .post-action {
+      font-size: .67rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      cursor: pointer;
+      transition: color .2s;
+    }
+
+    .post-action:hover {
+      color: var(--orange);
+    }
+
+    .post-action span {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .post-badge {
+      margin-left: auto;
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .1rem .55rem;
+      font-size: .6rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* latex badge */
+    .post-latex {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .1rem .5rem;
+      font-size: .6rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 
@@ -2078,7 +3066,7 @@
             Nền tảng học tập thông minh kết hợp AI tạo đề linh hoạt, phân tích năng lực cá nhân và trợ lý học tập 24/7 —
             để bạn học chủ động hơn, tiến bộ rõ ràng hơn.
           </p>
-          <div class="hero-actions reveal d3">
+          <div class="hero-actions reveal d4">
             <a href="https://shark-empti.vercel.app" target="_blank" class="btn-primary">
               <span data-vi="Khám phá Shark Empti" data-en="Explore Shark Empti">Khám phá Shark Empti</span> →
             </a>
@@ -2139,7 +3127,7 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item reveal d1">
-          <div class="stat-num">1-50</div>
+          <div class="stat-num" data-vi="≤ 50" data-en="≤ 50">≤ 50</div>
           <div class="stat-label" data-vi="Câu hỏi mỗi bài" data-en="Questions per quiz">Câu hỏi mỗi bài</div>
         </div>
         <div class="stat-item reveal d2">
@@ -2236,9 +3224,9 @@
               <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:.5rem;" data-vi="Tiến độ tổng quan"
                 data-en="Overall progress">Tiến độ tổng quan</div>
               <div class="sol-card-chips">
-                <span class="chip" data-vi="Tập hợp ✓" data-en="Sets ✓">Tập hợp ✓</span>
-                <span class="chip" data-vi="Đại số ✓" data-en="Algebra ✓">Đại số ✓</span>
-                <span class="chip" data-vi="Hình học ⚡" data-en="Geometry ⚡">Hình học ⚡</span>
+                <span class="chip" data-vi="Cá nhân hóa ✓" data-en="Personalized ✓">Cá nhân hóa ✓</span>
+                <span class="chip" data-vi="Phân tích ✓" data-en="Analysis ✓">Phân tích ✓</span>
+                <span class="chip" data-vi="Định hướng ⚡" data-en="Directional ⚡">Định hướng ⚡</span>
               </div>
             </div>
             <div class="sol-card"></div>
@@ -2410,118 +3398,180 @@
 
         <!-- Screen: Quiz Builder -->
         <div class="screen active" id="screen-quiz">
-          <div class="qb-title" data-vi="TẠO BÀI KIỂM TRA" data-en="BUILD YOUR QUIZ">TẠO BÀI KIỂM TRA</div>
-          <div class="qb-sub" data-vi="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE"
-            data-en="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE">AI-POWERED TESTS TO TRACK YOUR PERFORMANCE</div>
-          <div class="qb-form">
-            <div class="qb-field">
-              <label>📚 <span data-vi="MÔN HỌC" data-en="SUBJECT">MÔN HỌC</span></label>
-              <select class="qb-select">
-                <option data-vi="Toán học" data-en="Mathematics">Toán học</option>
-                <option data-vi="Vật lý" data-en="Physics">Vật lý</option>
-                <option data-vi="Hóa học" data-en="Chemistry">Hóa học</option>
-              </select>
+          <!-- decorative backdrop -->
+          <div class="qb-backdrop"></div>
+          <div class="qb-glow-top"></div>
+          <div class="qb-inner">
+            <!-- headline -->
+            <div class="qb-title" data-vi="TẠO BÀI KIỂM TRA" data-en="BUILD YOUR QUIZ">TẠO BÀI KIỂM TRA</div>
+            <div class="qb-sub" data-vi="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE"
+              data-en="AI-POWERED TESTS TO TRACK YOUR PERFORMANCE">AI-POWERED TESTS TO TRACK YOUR PERFORMANCE</div>
+            <!-- form -->
+            <div class="qb-form">
+              <div class="qb-field">
+                <label>📚 <span data-vi="MÔN HỌC" data-en="SUBJECT">MÔN HỌC</span></label>
+                <select class="qb-select">
+                  <option>—</option>
+                  <option data-vi="Ngữ văn" data-en="Literature">Ngữ văn</option>
+                  <option data-vi="Toán học" data-en="Mathematics">Toán học</option>
+                  <option data-vi="Vật lý" data-en="Physics">Vật lý</option>
+                  <option data-vi="Hóa học" data-en="Chemistry">Hóa học</option>
+                  <option data-vi="Sinh học" data-en="Biology">Sinh học</option>
+                  <option data-vi="Tiếng Anh" data-en="English">Tiếng Anh</option>
+                  <option data-vi="Khác" data-en="Other">Khác</option>
+                </select>
+              </div>
+              <div class="qb-field">
+                <label>🎓 <span data-vi="KHỐI LỚP" data-en="GRADE">KHỐI LỚP</span></label>
+                <select class="qb-select">
+                  <option>—</option>
+                  <option data-vi="Lớp 6" data-en="Grade 6">Lớp 6</option>
+                  <option data-vi="Lớp 7" data-en="Grade 7">Lớp 7</option>
+                  <option data-vi="Lớp 8" data-en="Grade 8">Lớp 8</option>
+                  <option data-vi="Lớp 9" data-en="Grade 9">Lớp 9</option>
+                  <option data-vi="Lớp 10" data-en="Grade 10">Lớp 10</option>
+                  <option data-vi="Lớp 11" data-en="Grade 11">Lớp 11</option>
+                  <option data-vi="Lớp 12" data-en="Grade 12">Lớp 12</option>
+                </select>
+              </div>
+              <div class="qb-field full">
+                <label>⊙ <span data-vi="CHỦ ĐỀ / BÀI HỌC *" data-en="TOPIC / LESSON *">CHỦ ĐỀ / BÀI HỌC *</span></label>
+                <div class="qb-input-wrapper">
+                  <input class="qb-input" type="text" data-placeholder-vi="VD: Đạo hàm, Tích phân, 3 định luật Newton, Phản ứng oxi hóa-khử,..."
+                    data-placeholder-en="E.g.: Derivative, Integral, Newton's Laws of Motion, Redox Reaction,..."
+                    placeholder="VD: Đạo hàm, Tích phân, 3 định luật Newton, Phản ứng oxi hóa-khử,..." />
+                </div>
+              </div>
+              <div class="qb-field">
+                <label>⚙ <span data-vi="DẠNG CÂU HỎI" data-en="QUESTION TYPE">DẠNG CÂU HỎI</span></label>
+                <select class="qb-select">
+                  <option data-vi="Trắc nghiệm" data-en="Multiple Choice">Trắc nghiệm</option>
+                  <option data-vi="Đúng / Sai" data-en="True / False">Đúng / Sai</option>
+                  <option data-vi="Tự luận ngắn" data-en="Short Answer">Tự luận ngắn</option>
+                </select>
+              </div>
+              <div class="qb-field">
+                <label>⚡ <span data-vi="MỨC ĐỘ KHÓ" data-en="DIFFICULTY">MỨC ĐỘ KHÓ</span></label>
+                <div class="qb-chips">
+                  <div class="qb-chip selected" data-vi="Dễ" data-en="Easy">Dễ</div>
+                  <div class="qb-chip" data-vi="Trung bình" data-en="Medium">Trung bình</div>
+                  <div class="qb-chip" data-vi="Khó" data-en="Hard">Khó</div>
+                </div>
+              </div>
+              <div class="qb-field full">
+                <label>🔢 <span data-vi="SỐ LƯỢNG CÂU HỎI (1-50)" data-en="QUESTION COUNT (1-50)">SỐ LƯỢNG CÂU HỎI
+                    (1-50)</span></label>
+                <select class="qb-select">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>15</option>
+                  <option selected>20</option>
+                  <option>25</option>
+                  <option>30</option>
+                  <option>40</option>
+                  <option>50</option>
+                </select>
+              </div>
+              <div class="qb-submit-wrap">
+                <button class="qb-submit" data-vi="✦ TẠO ĐỀ NGAY →" data-en="✦ GENERATE QUIZ →">✦ TẠO ĐỀ NGAY →</button>
+              </div>
             </div>
-            <div class="qb-field">
-              <label>🎓 <span data-vi="KHỐI LỚP" data-en="GRADE">KHỐI LỚP</span></label>
-              <select class="qb-select">
-                <option data-vi="Lớp 10" data-en="Grade 10">Lớp 10</option>
-                <option data-vi="Lớp 11" data-en="Grade 11">Lớp 11</option>
-                <option data-vi="Lớp 12" data-en="Grade 12">Lớp 12</option>
-              </select>
+            <!-- floating Shark Guru chip -->
+            <div class="qb-guru-chip">
+              <div class="qb-guru-avatar">✦</div>
+              <div class="qb-guru-text" data-vi="Shark Guru sẵn sàng hỗ trợ bạn!"
+                data-en="Shark Guru is ready to help!">Shark Guru sẵn sàng hỗ trợ bạn!</div>
             </div>
-            <div class="qb-field full">
-              <label>⊙ <span data-vi="CHỦ ĐỀ / BÀI HỌC *" data-en="TOPIC / LESSON *">CHỦ ĐỀ / BÀI HỌC *</span></label>
-              <input class="qb-input" type="text" placeholder=""
-                data-placeholder-vi="VD: Tập hợp và các phép toán tập hợp"
-                data-placeholder-en="E.g.: Sets and set operations" />
-            </div>
-            <div class="qb-field">
-              <label>⚙ <span data-vi="DẠNG CÂU HỎI" data-en="QUESTION TYPE">DẠNG CÂU HỎI</span></label>
-              <select class="qb-select">
-                <option data-vi="Trắc nghiệm" data-en="Multiple Choice">Trắc nghiệm</option>
-                <option data-vi="Đúng / Sai" data-en="True / False">Đúng / Sai</option>
-              </select>
-            </div>
-            <div class="qb-field">
-              <label>⚡ <span data-vi="SỐ LƯỢNG CÂU" data-en="QUESTION COUNT">SỐ LƯỢNG CÂU</span></label>
-              <select class="qb-select">
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-                <option>50</option>
-              </select>
-            </div>
-            <button class="qb-submit" data-vi="✦ TẠO ĐỀ NGAY →" data-en="✦ GENERATE QUIZ →">✦ TẠO ĐỀ NGAY →</button>
-          </div>
+          </div><!-- /qb-inner -->
         </div>
 
         <!-- Screen: Dashboard -->
         <div class="screen" id="screen-dash">
-          <div class="db-title">⊞ <span data-vi="TỔNG QUAN" data-en="OVERVIEW">TỔNG QUAN</span></div>
-          <div class="db-cards">
-            <div class="db-card">
-              <div class="db-card-icon">🎯</div>
-              <div>
-                <div class="db-label" data-vi="TỔNG SỐ LƯỢT LÀM BÀI" data-en="TOTAL SESSIONS">TỔNG SỐ LƯỢT LÀM BÀI</div>
-                <div class="db-num">24</div>
-              </div>
+          <div class="db-glow"></div>
+          <div class="db-inner">
+            <div class="db-header">
+              <div class="db-title">⊞ <span data-vi="TỔNG QUAN" data-en="OVERVIEW">TỔNG QUAN</span></div>
+              <div class="db-date-badge" data-vi="Tháng 4 · 2026" data-en="April · 2026">Tháng 4 · 2026</div>
             </div>
-            <div class="db-card">
-              <div class="db-card-icon">⚠️</div>
-              <div>
-                <div class="db-label" data-vi="TỔNG SỐ LỖI" data-en="TOTAL ERRORS">TỔNG SỐ LỖI</div>
-                <div class="db-num">47</div>
-              </div>
-            </div>
-            <div class="db-card">
-              <div class="db-card-icon">📖</div>
-              <div>
-                <div class="db-label" data-vi="LỖI THƯỜNG GẶP NHẤT" data-en="MOST COMMON ERROR">LỖI THƯỜNG GẶP NHẤT
+            <div class="db-cards">
+              <div class="db-card">
+                <div class="db-card-icon">🎯</div>
+                <div>
+                  <div class="db-label" data-vi="LƯỢT LÀM BÀI" data-en="TOTAL SESSIONS">LƯỢT LÀM BÀI</div>
+                  <div class="db-num">24</div>
                 </div>
-                <div class="db-num" style="font-size:1rem;" data-vi="Lỗi khái niệm" data-en="Concept Error">Lỗi khái
-                  niệm</div>
+              </div>
+              <div class="db-card">
+                <div class="db-card-icon">⚠️</div>
+                <div>
+                  <div class="db-label" data-vi="TỔNG SỐ LỖI" data-en="TOTAL ERRORS">TỔNG SỐ LỖI</div>
+                  <div class="db-num">47</div>
+                </div>
+              </div>
+              <div class="db-card accent">
+                <div class="db-card-icon">📖</div>
+                <div>
+                  <div class="db-label" data-vi="LỖI PHỔ BIẾN" data-en="TOP ERROR">LỖI PHỔ BIẾN</div>
+                  <div class="db-num" style="font-size:1rem;" data-vi="Khái niệm" data-en="Concept">Khái niệm</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="db-charts">
-            <div class="db-chart-card">
-              <div class="db-chart-title">📊 <span data-vi="BIỂU ĐỒ KỸ NĂNG HỌC TẬP" data-en="SKILL CHART">BIỂU ĐỒ KỸ
-                  NĂNG HỌC TẬP</span></div>
-              <div class="mini-bars">
-                <div class="mini-bar filled" style="height:80%;"></div>
-                <div class="mini-bar filled" style="height:60%;"></div>
-                <div class="mini-bar half" style="height:40%;"></div>
-                <div class="mini-bar filled" style="height:90%;"></div>
-                <div class="mini-bar half" style="height:30%;"></div>
-                <div class="mini-bar filled" style="height:70%;"></div>
+            <div class="db-charts">
+              <div class="db-chart-card">
+                <div class="db-chart-title">📊 <span data-vi="BIỂU ĐỒ KỸ NĂNG" data-en="SKILL CHART">BIỂU ĐỒ KỸ
+                    NĂNG</span></div>
+                <div class="mini-bars">
+                  <div class="mini-bar filled" style="height:80%;"></div>
+                  <div class="mini-bar filled" style="height:60%;"></div>
+                  <div class="mini-bar half" style="height:38%;"></div>
+                  <div class="mini-bar filled" style="height:92%;"></div>
+                  <div class="mini-bar half" style="height:28%;"></div>
+                  <div class="mini-bar filled" style="height:68%;"></div>
+                  <div class="mini-bar half" style="height:50%;"></div>
+                </div>
               </div>
-            </div>
-            <div class="db-chart-card">
-              <div class="db-chart-title">⏱ <span data-vi="THỐNG KÊ LỖI" data-en="ERROR STATISTICS">THỐNG KÊ LỖI</span>
-              </div>
-              <div style="padding:.5rem 0;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
-                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi khái niệm"
-                    data-en="Concept error">Lỗi khái niệm</span>
-                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
-                    <div style="width:70%;height:100%;background:var(--orange);border-radius:100px;"></div>
+              <div class="db-chart-card">
+                <div class="db-chart-title">⏱ <span data-vi="THỐNG KÊ LỖI" data-en="ERROR STATS">THỐNG KÊ LỖI</span>
+                </div>
+                <div class="db-error-row">
+                  <div class="db-error-label" data-vi="Khái niệm" data-en="Concept">Khái niệm</div>
+                  <div class="db-error-track">
+                    <div class="db-error-fill" style="width:72%;"></div>
                   </div>
+                  <div class="db-error-pct">72%</div>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
-                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi tính toán"
-                    data-en="Calculation error">Lỗi tính toán</span>
-                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
-                    <div style="width:45%;height:100%;background:var(--orange);border-radius:100px;opacity:.6;"></div>
+                <div class="db-error-row">
+                  <div class="db-error-label" data-vi="Tính toán" data-en="Calculation">Tính toán</div>
+                  <div class="db-error-track">
+                    <div class="db-error-fill" style="width:44%;opacity:.7;"></div>
                   </div>
+                  <div class="db-error-pct" style="opacity:.7;">44%</div>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:.75rem;color:var(--text-sub);" data-vi="Lỗi ký hiệu" data-en="Symbol error">Lỗi
-                    ký hiệu</span>
-                  <div style="width:60%;height:6px;background:var(--border);border-radius:100px;overflow:hidden;">
-                    <div style="width:25%;height:100%;background:var(--orange);border-radius:100px;opacity:.4;"></div>
+                <div class="db-error-row">
+                  <div class="db-error-label" data-vi="Ký hiệu" data-en="Symbol">Ký hiệu</div>
+                  <div class="db-error-track">
+                    <div class="db-error-fill" style="width:22%;opacity:.5;"></div>
                   </div>
+                  <div class="db-error-pct" style="opacity:.5;">22%</div>
                 </div>
+              </div>
+            </div>
+            <div class="db-analysis">
+              <div class="db-analysis-card">
+                <div class="db-analysis-title strength">✓ <span data-vi="ĐIỂM MẠNH" data-en="STRENGTHS">ĐIỂM MẠNH</span>
+                </div>
+                <div class="db-analysis-item strength" data-vi="Xác định phần tử tập hợp"
+                  data-en="Set element identification">Xác định phần tử tập hợp</div>
+                <div class="db-analysis-item strength" data-vi="Định luật I Newton" data-en="Newton's 1st Law">Định luật
+                  I Newton</div>
+              </div>
+              <div class="db-analysis-card">
+                <div class="db-analysis-title weakness">✗ <span data-vi="CẦN CẢI THIỆN" data-en="NEEDS WORK">CẦN CẢI
+                    THIỆN</span></div>
+                <div class="db-analysis-item weakness" data-vi="Ký hiệu toán học" data-en="Math notation">Ký hiệu toán
+                  học</div>
+                <div class="db-analysis-item weakness" data-vi="Phản ứng oxy hóa – khử" data-en="Redox reactions">Phản
+                  ứng oxy hóa – khử</div>
               </div>
             </div>
           </div>
@@ -2529,67 +3579,96 @@
 
         <!-- Screen: Flashcard -->
         <div class="screen" id="screen-flash">
-          <div class="fc-progress" data-vi="TIẾN ĐỘ: 1 / 10" data-en="PROGRESS: 1 / 10">TIẾN ĐỘ: 1 / 10</div>
-          <div class="fc-bar">
-            <div class="fill"></div>
-          </div>
-          <div class="fc-card">
-            <div class="fc-icon">✦</div>
-            <div class="fc-text"
-              data-vi="Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp được gọi là các phần tử của tập hợp đó."
-              data-en="A set is a well-defined collection of distinct objects. The objects in a set are called the elements of that set.">
-              Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp được
-              gọi là các phần tử của tập hợp đó.
+          <div class="fc-glow"></div>
+          <div class="fc-inner">
+            <div class="fc-header">
+              <div class="fc-progress" data-vi="TIẾN ĐỘ: 1 / 10" data-en="PROGRESS: 1 / 10">TIẾN ĐỘ: 1 / 10</div>
+              <div class="fc-cancel" data-vi="HỦY" data-en="CANCEL">HỦY</div>
             </div>
-            <div class="fc-hint" data-vi="LẬT LẠI" data-en="FLIP CARD">LẬT LẠI</div>
-          </div>
-          <div class="fc-actions">
-            <div class="fc-btn" data-vi="← THẺ TRƯỚC" data-en="← PREVIOUS">← THẺ TRƯỚC</div>
-            <div class="fc-btn next" data-vi="THẺ TIẾP THEO →" data-en="NEXT CARD →">THẺ TIẾP THEO →</div>
+            <div class="fc-bar">
+              <div class="fill"></div>
+            </div>
+            <div class="fc-topics">
+              <div class="fc-topic-chip active" data-vi="Tập hợp" data-en="Sets">Tập hợp</div>
+              <div class="fc-topic-chip" data-vi="Oxy hóa – khử" data-en="Redox">Oxy hóa – khử</div>
+              <div class="fc-topic-chip" data-vi="Tích phân" data-en="Integrals">Tích phân</div>
+              <div class="fc-topic-chip" data-vi="Pytago" data-en="Pythagoras">Pytago</div>
+            </div>
+            <div class="fc-scene">
+              <div class="fc-card">
+                <div class="fc-mode-badge" data-vi="THẺ NHỚ" data-en="FLASHCARD">THẺ NHỚ</div>
+                <div class="fc-icon">✦</div>
+                <div class="fc-text"
+                  data-vi="Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp được gọi là các phần tử của tập hợp đó."
+                  data-en="A set is a well-defined collection of distinct objects. The objects in a set are called the elements of that set.">
+                  Tập hợp là một bộ sưu tập các đối tượng khác nhau, được xác định rõ ràng. Các đối tượng trong tập hợp
+                  được gọi là các phần tử của tập hợp đó.
+                </div>
+                <div class="fc-hint" data-vi="NHẤN ĐỂ LẬT ▸" data-en="TAP TO FLIP ▸">NHẤN ĐỂ LẬT ▸</div>
+              </div>
+            </div>
+            <div class="fc-actions">
+              <div class="fc-btn" data-vi="← THẺ TRƯỚC" data-en="← PREVIOUS">← THẺ TRƯỚC</div>
+              <div class="fc-btn next" data-vi="THẺ TIẾP THEO →" data-en="NEXT CARD →">THẺ TIẾP THEO →</div>
+            </div>
           </div>
         </div>
 
         <!-- Screen: Forum -->
         <div class="screen" id="screen-forum">
-          <div class="forum-title">💬 <span data-vi="DIỄN ĐÀN" data-en="FORUM">DIỄN ĐÀN</span></div>
-          <div class="forum-sub" data-vi="CỘNG ĐỒNG HỌC TẬP SHARK EMPTI" data-en="SHARK EMPTI LEARNING COMMUNITY">CỘNG
-            ĐỒNG HỌC TẬP SHARK EMPTI</div>
-          <div class="forum-search">
-            🔍 <span style="color:var(--text-muted);font-size:.82rem;"
-              data-vi="Tìm kiếm bài viết theo tiêu đề hoặc nội dung..."
-              data-en="Search posts by title or content...">Tìm kiếm bài viết theo tiêu đề hoặc nội dung...</span>
-          </div>
-          <div class="forum-post">
-            <div class="forum-post-header">
-              <div class="avatar">X</div>
-              <div class="post-author" data-vi="Xuân Bách Lê" data-en="Xuân Bách Lê">Xuân Bách Lê</div>
-              <div class="post-time">19/04/2026</div>
+          <div class="forum-inner">
+            <div class="forum-header">
+              <div>
+                <div class="forum-title">💬 <span data-vi="DIỄN ĐÀN" data-en="FORUM">DIỄN ĐÀN</span></div>
+                <div class="forum-sub" data-vi="CỘNG ĐỒNG HỌC TẬP SHARK EMPTI" data-en="SHARK EMPTI LEARNING COMMUNITY">
+                  CỘNG ĐỒNG HỌC TẬP SHARK EMPTI</div>
+              </div>
+              <button class="forum-new-btn" data-vi="+ Đăng bài" data-en="+ New Post">+ Đăng bài</button>
             </div>
-            <div class="post-title" data-vi="Hỏi về ký hiệu tập hợp trong toán học"
-              data-en="Question about set notation in mathematics">Hỏi về ký hiệu tập hợp trong toán học</div>
-            <div class="post-preview" data-vi="Mình đang ôn phần tập hợp, không hiểu tại sao dùng dấu ∈ thay vì ⊂..."
-              data-en="I'm reviewing sets and don't understand why ∈ is used instead of ⊂...">Mình đang ôn phần tập hợp,
-              không hiểu tại sao dùng dấu ∈ thay vì ⊂...</div>
-            <div class="post-actions">
-              <div class="post-action">❤️ <span>3</span></div>
-              <div class="post-action">💬 <span>5</span></div>
+            <div class="forum-search">
+              🔍&nbsp;<span style="color:var(--text-muted);font-size:.8rem;" data-vi="Tìm kiếm bài viết..."
+                data-en="Search posts...">Tìm kiếm bài viết...</span>
             </div>
-          </div>
-          <div class="forum-post">
-            <div class="forum-post-header">
-              <div class="avatar" style="background:#888;">:D</div>
-              <div class="post-author" style="color:var(--text-sub);" data-vi="Nguyễn Anh Tú" data-en="Nguyễn Anh Tú">
-                Nguyễn Anh Tú</div>
-              <div class="post-time">18/04/2026</div>
+
+            <div class="forum-post">
+              <div class="forum-post-header">
+                <div class="avatar">X</div>
+                <div>
+                  <div class="post-author" data-vi="Xuân Bách Lê" data-en="Xuân Bách Lê">Xuân Bách Lê</div>
+                  <div class="post-time">19/04/2026</div>
+                </div>
+                <div class="post-badge" data-vi="HOT" data-en="HOT">HOT</div>
+              </div>
+              <div class="post-title" data-vi="Hỏi về ký hiệu tập hợp trong toán học"
+                data-en="Question about set notation in mathematics">Hỏi về ký hiệu tập hợp trong toán học</div>
+              <div class="post-preview" data-vi="Mình đang ôn phần tập hợp, không hiểu tại sao dùng dấu ∈ thay vì ⊂..."
+                data-en="I'm reviewing sets and don't understand why ∈ is used instead of ⊂...">Mình đang ôn phần tập
+                hợp, không hiểu tại sao dùng dấu ∈ thay vì ⊂...</div>
+              <div class="post-actions">
+                <div class="post-action">❤️ <span>3</span></div>
+                <div class="post-action">💬 <span>5</span></div>
+                <span class="post-latex">∑ LaTeX</span>
+              </div>
             </div>
-            <div class="post-title" data-vi="Chia sẻ tip ôn tập Định luật Newton hiệu quả"
-              data-en="Tips for studying Newton's Laws effectively">Chia sẻ tip ôn tập Định luật Newton hiệu quả</div>
-            <div class="post-preview" data-vi="Sau khi dùng Shark Empti 2 tuần, mình đã cải thiện điểm Vật lý rõ rệt..."
-              data-en="After using Shark Empti for 2 weeks, my Physics score improved significantly...">Sau khi dùng
-              Shark Empti 2 tuần, mình đã cải thiện điểm Vật lý rõ rệt...</div>
-            <div class="post-actions">
-              <div class="post-action">❤️ <span>12</span></div>
-              <div class="post-action">💬 <span>8</span></div>
+
+            <div class="forum-post">
+              <div class="forum-post-header">
+                <div class="avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">A</div>
+                <div>
+                  <div class="post-author" style="color:var(--text-sub);" data-vi="Nguyễn Anh Tú"
+                    data-en="Nguyễn Anh Tú">Nguyễn Anh Tú</div>
+                  <div class="post-time">18/04/2026</div>
+                </div>
+              </div>
+              <div class="post-title" data-vi="Chia sẻ tip ôn tập Định luật Newton hiệu quả"
+                data-en="Tips for studying Newton's Laws effectively">Chia sẻ tip ôn tập Định luật Newton hiệu quả</div>
+              <div class="post-preview" data-vi="Sau khi dùng Shark Empti 2 tuần, điểm Vật lý mình cải thiện rõ rệt..."
+                data-en="After 2 weeks on Shark Empti, my Physics score improved significantly...">Sau khi dùng Shark
+                Empti 2 tuần, điểm Vật lý mình cải thiện rõ rệt...</div>
+              <div class="post-actions">
+                <div class="post-action">❤️ <span>12</span></div>
+                <div class="post-action">💬 <span>8</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2834,9 +3913,8 @@
               Empti</span>
           </a>
         </div>
-        <div class="cta-note reveal d4" data-vi="Được xây dựng bởi nhóm VTS - Cá Mập Laze"
-          data-en="Built by the VTS - Cá Mập Laze team">
-          Được xây dựng bởi nhóm VTS - Cá Mập Laze
+        <div class="cta-note reveal d4">
+          shark-empti.vercel.app
         </div>
       </div>
     </div>
@@ -2906,10 +3984,6 @@
       document.querySelectorAll('[data-placeholder-vi]').forEach(el => {
         el.placeholder = el.getAttribute('data-placeholder-' + lang) || '';
       });
-      // update title
-      document.title = lang === 'vi'
-        ? 'Shark Empti - Portfolio'
-        : 'Shark Empti — Portfolio';
       // update select options
       document.querySelectorAll('select option[data-vi]').forEach(opt => {
         const v = opt.getAttribute('data-' + lang);
@@ -2962,6 +4036,22 @@
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('nav');
       nav.style.boxShadow = window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.3)' : 'none';
+    });
+
+    /* ── QUIZ DIFFICULTY CHIPS ───────────────────────────────────── */
+    document.querySelectorAll('.qb-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.closest('.qb-chips').querySelectorAll('.qb-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+      });
+    });
+
+    /* ── FLASHCARD TOPIC CHIPS ───────────────────────────────────── */
+    document.querySelectorAll('.fc-topic-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.closest('.fc-topics').querySelectorAll('.fc-topic-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
     });
   </script>
 
