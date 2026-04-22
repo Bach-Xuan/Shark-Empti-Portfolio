@@ -2306,6 +2306,599 @@
       }
     }
 
+    /* ─── POLICY CONTEXT SECTION ─────────────────────────────── */
+    #policy-context {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .policy-glow {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .policy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem 1.6rem;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .policy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .policy-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card), 0 0 30px var(--orange-glow);
+    }
+
+    .policy-card:hover::before {
+      opacity: 1;
+    }
+
+    .policy-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .policy-title {
+      font-weight: 700;
+      font-size: .92rem;
+      margin-bottom: .5rem;
+      line-height: 1.45;
+    }
+
+    .policy-desc {
+      font-size: .8rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .policy-quote {
+      background: var(--orange-glow);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 10px 10px 0;
+      padding: .8rem 1rem;
+      margin-top: 2.5rem;
+      font-size: .88rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .policy-quote strong {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ─── BATTLE ARENA SCREEN ─────────────────────────────────── */
+    #screen-arena {
+      padding: 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arena-inner {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .arena-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .arena-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .arena-coin-badge {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      color: #fff;
+      border-radius: 100px;
+      padding: .35rem .85rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      box-shadow: 0 4px 14px var(--orange-glow-strong);
+    }
+
+    .arena-sub {
+      font-size: .65rem;
+      color: var(--text-muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .arena-tabs {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+
+    .arena-tab {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .3rem .85rem;
+      font-size: .72rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-sub);
+      transition: all .2s;
+    }
+
+    .arena-tab.active {
+      background: var(--orange);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .arena-challenge-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      margin-bottom: .6rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .arena-challenge-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--orange-glow);
+    }
+
+    .arena-challenge-top {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .arena-challenge-badge {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--orange);
+      background: var(--orange-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: .15rem .55rem;
+      text-transform: uppercase;
+    }
+
+    .arena-challenge-date {
+      font-size: .62rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .arena-challenge-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .arena-challenge-meta {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .arena-meta-pill {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .2rem .6rem;
+      font-size: .62rem;
+      color: var(--text-sub);
+    }
+
+    .arena-challenge-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .arena-creator {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--text-sub);
+    }
+
+    .arena-creator-avatar {
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .6rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .arena-play-count {
+      font-size: .65rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+    }
+
+    .arena-create-btn {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: .5rem 1.1rem;
+      font-size: .75rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      box-shadow: 0 4px 16px var(--orange-glow-strong);
+      transition: all .2s;
+    }
+
+    .arena-create-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--orange-glow-strong);
+    }
+
+    /* ─── REPORT SCREEN ───────────────────────────────────────── */
+    #screen-report {
+      padding: 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .report-inner {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .report-title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .3rem;
+    }
+
+    .report-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .report-topic-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      border-left: 3px solid var(--orange);
+      padding-left: .7rem;
+      margin-bottom: .7rem;
+    }
+
+    .report-export-btn {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .35rem .75rem;
+      font-size: .7rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      transition: all .2s;
+    }
+
+    .report-export-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .report-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+      margin-bottom: .7rem;
+    }
+
+    .report-box {
+      border-radius: 14px;
+      padding: .9rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .report-box.green {
+      background: rgba(74, 222, 128, .08);
+      border-color: rgba(74, 222, 128, .2);
+    }
+
+    .report-box.red {
+      background: rgba(248, 113, 113, .08);
+      border-color: rgba(248, 113, 113, .2);
+    }
+
+    .report-box-title {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .55rem;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .report-box-title.green {
+      color: #4ade80;
+    }
+
+    .report-box-title.red {
+      color: #f87171;
+    }
+
+    .report-item {
+      font-size: .74rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+      padding-left: .8rem;
+      position: relative;
+      margin-bottom: .2rem;
+    }
+
+    .report-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+    }
+
+    .report-item.green::before {
+      color: #4ade80;
+    }
+
+    .report-item.red::before {
+      color: #f87171;
+    }
+
+    .report-suggest-title {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--orange);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      margin-bottom: .55rem;
+    }
+
+    .report-suggest-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+    }
+
+    .report-task {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .5rem .7rem;
+      font-size: .72rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: flex-start;
+      gap: .35rem;
+    }
+
+    .report-task-circle {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── FOCUS RECOMMENDATIONS IN DASHBOARD ─────────────────── */
+    .db-focus-section {
+      margin-top: .7rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .db-focus-header {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .db-focus-header-title {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      flex: 1;
+    }
+
+    .db-focus-header .chevron {
+      font-size: .7rem;
+      color: var(--text-muted);
+      transition: transform .25s;
+    }
+
+    .db-focus-header.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .db-focus-body {
+      display: none;
+      padding: .7rem 1rem;
+      gap: .5rem;
+      flex-direction: column;
+    }
+
+    .db-focus-body.open {
+      display: flex;
+    }
+
+    .db-focus-top3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .4rem;
+      margin-bottom: .4rem;
+    }
+
+    .db-focus-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .6rem .7rem;
+      position: relative;
+    }
+
+    .db-focus-rank {
+      position: absolute;
+      top: .4rem;
+      left: .4rem;
+      width: 16px;
+      height: 16px;
+      background: var(--orange);
+      border-radius: 5px;
+      font-size: .55rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .db-focus-name {
+      font-size: .68rem;
+      font-weight: 700;
+      margin-top: .4rem;
+      margin-bottom: .15rem;
+      padding-left: 1.2rem;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .db-focus-err {
+      font-size: .62rem;
+      color: #f87171;
+      font-weight: 700;
+    }
+
+    .db-focus-path-title {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .db-focus-path-item {
+      display: flex;
+      gap: .4rem;
+      align-items: flex-start;
+      font-size: .7rem;
+      color: var(--text-sub);
+      padding: .4rem .5rem;
+      background: var(--bg2);
+      border-radius: 8px;
+      line-height: 1.4;
+    }
+
+    .db-focus-path-circle {
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
     /* ─── THEME TRANSITION ────────────────────────────────────── */
     * {
       transition-property: background-color, border-color, color, box-shadow;
@@ -3154,6 +3747,88 @@
     </div>
   </div>
 
+  <!-- ─── POLICY CONTEXT ──────────────────────────────────────────── -->
+  <section id="policy-context">
+    <div class="policy-glow"></div>
+    <div class="container">
+      <div class="section-tag reveal" data-vi="Bối cảnh chính sách" data-en="Policy Context">Bối cảnh chính sách</div>
+      <h2 class="section-title reveal d1" data-vi="Cơ hội từ<br>chính sách quốc gia"
+        data-en="Opportunity from<br>national policy">Cơ hội từ<br>chính sách quốc gia</h2>
+      <p class="section-desc reveal d2"
+        data-vi="Shark Empti ra đời đúng thời điểm Việt Nam đang đẩy mạnh chuyển đổi số giáo dục và ứng dụng AI — đồng hành với các nghị quyết, chiến lược hàng đầu của Đảng và Nhà nước."
+        data-en="Shark Empti was born at the right moment as Vietnam accelerates digital transformation in education and AI adoption — aligned with the Party and Government's top resolutions and strategies.">
+        Shark Empti ra đời đúng thời điểm Việt Nam đang đẩy mạnh chuyển đổi số giáo dục và ứng dụng AI — đồng hành với
+        các nghị quyết, chiến lược hàng đầu của Đảng và Nhà nước.
+      </p>
+
+      <div class="policy-grid">
+        <div class="policy-card reveal d1">
+          <div class="policy-num" data-vi="⚡ Nghị quyết 57-NQ/TW · 22/12/2024"
+            data-en="⚡ Resolution 57-NQ/TW · 12/22/2024">⚡ Nghị quyết 57-NQ/TW · 22/12/2024</div>
+          <div class="policy-title" data-vi="Đột phá phát triển Khoa học, Công nghệ, Đổi mới sáng tạo & Chuyển đổi số"
+            data-en="Breakthrough in Science, Technology, Innovation & Digital Transformation">Đột phá phát triển Khoa
+            học, Công nghệ, Đổi mới sáng tạo &amp; Chuyển đổi số</div>
+          <div class="policy-desc"
+            data-vi="Xác định khoa học, công nghệ là động lực then chốt. Mục tiêu 2030: đưa Việt Nam vào nhóm nước top đầu ASEAN về chỉ số đổi mới sáng tạo. Shark Empti là ứng dụng EdTech trực tiếp hiện thực hóa tinh thần Nghị quyết."
+            data-en="Identifies science & technology as the key driver. Goal 2030: bring Vietnam into ASEAN's top group for innovation index. Shark Empti is an EdTech application directly realizing the resolution's spirit.">
+            Xác định khoa học, công nghệ là động lực then chốt. Mục tiêu 2030: đưa Việt Nam vào nhóm nước top đầu ASEAN
+            về chỉ số đổi mới sáng tạo. Shark Empti là ứng dụng EdTech trực tiếp hiện thực hóa tinh thần Nghị quyết.
+          </div>
+        </div>
+
+        <div class="policy-card reveal d2">
+          <div class="policy-num" data-vi="📚 Nghị quyết 71-NQ/TW · 22/8/2025"
+            data-en="📚 Resolution 71-NQ/TW · 8/22/2025">📚 Nghị quyết 71-NQ/TW · 22/8/2025</div>
+          <div class="policy-title" data-vi="Đột phá phát triển Giáo dục và Đào tạo"
+            data-en="Breakthrough in Education & Training Development">Đột phá phát triển Giáo dục và Đào tạo</div>
+          <div class="policy-desc"
+            data-vi="Khẳng định giáo dục là quốc sách hàng đầu. Yêu cầu đổi mới toàn diện, ứng dụng công nghệ số, AI để nâng cao chất lượng giảng dạy. Shark Empti đang xây dựng hạ tầng học liệu thông minh đáp ứng trực tiếp yêu cầu này."
+            data-en="Affirms education as the top national priority. Requires comprehensive innovation, digital technology and AI application to improve teaching quality. Shark Empti is building smart learning infrastructure that directly addresses this need.">
+            Khẳng định giáo dục là quốc sách hàng đầu. Yêu cầu đổi mới toàn diện, ứng dụng công nghệ số, AI để nâng cao
+            chất lượng giảng dạy. Shark Empti đang xây dựng hạ tầng học liệu thông minh đáp ứng trực tiếp yêu cầu này.
+          </div>
+        </div>
+
+        <div class="policy-card reveal d3">
+          <div class="policy-num" data-vi="🖥️ Quyết định 131/QĐ-TTg" data-en="🖥️ Decision 131/QĐ-TTg">🖥️ Quyết định
+            131/QĐ-TTg</div>
+          <div class="policy-title" data-vi='Đề án "Tăng cường ứng dụng CNTT và chuyển đổi số trong giáo dục"'
+            data-en='"Strengthening IT Application and Digital Transformation in Education" Project'>Đề án "Tăng cường
+            ứng dụng CNTT và chuyển đổi số trong giáo dục"</div>
+          <div class="policy-desc"
+            data-vi="Phê duyệt lộ trình chuyển đổi số toàn diện ngành giáo dục. Shark Empti là nền tảng học tập số đáp ứng trực tiếp các tiêu chí trong đề án — cá nhân hóa học tập, phân tích dữ liệu và ứng dụng AI."
+            data-en="Approves a comprehensive digital transformation roadmap for education. Shark Empti is a digital learning platform directly meeting the project's criteria — personalized learning, data analytics, and AI application.">
+            Phê duyệt lộ trình chuyển đổi số toàn diện ngành giáo dục. Shark Empti là nền tảng học tập số đáp ứng trực
+            tiếp các tiêu chí trong đề án — cá nhân hóa học tập, phân tích dữ liệu và ứng dụng AI.</div>
+        </div>
+
+        <div class="policy-card reveal d4">
+          <div class="policy-num" data-vi="🤖 Quyết định 127/QĐ-TTg" data-en="🤖 Decision 127/QĐ-TTg">🤖 Quyết định
+            127/QĐ-TTg</div>
+          <div class="policy-title" data-vi="Chiến lược quốc gia về nghiên cứu, phát triển và ứng dụng Trí tuệ nhân tạo"
+            data-en="National Strategy on AI Research, Development and Application">Chiến lược quốc gia về nghiên cứu,
+            phát triển và ứng dụng Trí tuệ nhân tạo</div>
+          <div class="policy-desc"
+            data-vi="Định hướng đưa AI vào mọi lĩnh vực trọng điểm, trong đó giáo dục là ưu tiên hàng đầu. Shark Empti ứng dụng Gemini AI để tạo đề, phân tích và cá nhân hóa hành trình học — đây là hiện thực hóa trực tiếp Chiến lược AI quốc gia."
+            data-en="Directs the integration of AI across key sectors, with education as a top priority. Shark Empti applies Gemini AI for quiz generation, analytics, and personalizing the learning journey — directly realizing the National AI Strategy.">
+            Định hướng đưa AI vào mọi lĩnh vực trọng điểm, trong đó giáo dục là ưu tiên hàng đầu. Shark Empti ứng dụng
+            Gemini AI để tạo đề, phân tích và cá nhân hóa hành trình học — đây là hiện thực hóa trực tiếp Chiến lược AI
+            quốc gia.</div>
+        </div>
+      </div>
+
+      <div class="policy-quote reveal d5">
+        <strong data-vi="Đây là thời điểm vàng." data-en="This is the golden moment.">Đây là thời điểm vàng.</strong>
+        <em
+          data-vi="Khi Đảng và Nhà nước đang đặt chuyển đổi số giáo dục lên hàng ưu tiên quốc gia, Shark Empti xuất hiện với giải pháp cụ thể, có thể triển khai ngay — không phải khái niệm, không phải tương lai, mà là sản phẩm đang chạy live hôm nay."
+          data-en="When the Party and the State are placing digital transformation in education at the top of their national priorities, Shark Empti appears with a specific solution that can be deployed immediately — not just a concept, not just the future, but a product that is already live today.">Khi
+          Đảng và Nhà nước đang đặt chuyển đổi số giáo dục lên hàng ưu tiên quốc gia, Shark Empti xuất hiện với giải
+          pháp cụ thể, có thể triển khai ngay — không phải khái niệm, không phải tương lai, mà là sản phẩm đang chạy
+          live hôm nay.</em>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── PROBLEM ───────────────────────────────────────────────── -->
   <section id="problem">
     <div class="container">
@@ -3369,6 +4044,42 @@
           <span class="feature-tag" data-vi="Cộng đồng" data-en="Community">Cộng đồng</span>
         </div>
 
+        <div class="feature-card reveal d1">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title" data-vi="Lộ trình ôn tập thông minh" data-en="Smart Focus Recommendations">Lộ trình
+            ôn tập thông minh</div>
+          <div class="feature-desc"
+            data-vi="AI phát hiện 3 chủ đề có tỉ lệ sai cao nhất và tự động đề xuất lộ trình ôn tập chi tiết — từng bài tập, từng bước, cá nhân hóa cho từng học sinh."
+            data-en="AI detects the 3 topics with the highest error rates and automatically suggests a detailed study plan — exercise by exercise, step by step, personalized for each student.">
+            AI phát hiện 3 chủ đề có tỉ lệ sai cao nhất và tự động đề xuất lộ trình ôn tập chi tiết — từng bài tập, từng
+            bước, cá nhân hóa cho từng học sinh.</div>
+          <span class="feature-tag" data-vi="AI" data-en="AI">AI · Mới</span>
+        </div>
+
+        <div class="feature-card reveal d2">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title" data-vi="Sàn đấu & Shark Coin" data-en="Battle Arena & Shark Coin">Sàn đấu &amp;
+            Shark Coin</div>
+          <div class="feature-desc"
+            data-vi="Học sinh tạo đề thách thức nhau, thi đấu trực tiếp và nhận Shark Coin — đơn vị tiền thưởng có thể đổi quà. Học mà vẫn có hứng khởi cạnh tranh lành mạnh."
+            data-en="Students create quizzes to challenge each other, compete live, and earn Shark Coin — a reward currency exchangeable for prizes. Learning meets healthy competitive excitement.">
+            Học sinh tạo đề thách thức nhau, thi đấu trực tiếp và nhận Shark Coin — đơn vị tiền thưởng có thể đổi quà.
+            Học mà vẫn có hứng khởi cạnh tranh lành mạnh.</div>
+          <span class="feature-tag" data-vi="Trò chơi hóa" data-en="Gamification">Trò chơi hóa</span>
+        </div>
+
+        <div class="feature-card reveal d3">
+          <div class="feature-icon">📄</div>
+          <div class="feature-title" data-vi="Báo cáo học tập chi tiết" data-en="Detailed Learning Report">Báo cáo học
+            tập chi tiết</div>
+          <div class="feature-desc"
+            data-vi="Xuất báo cáo chuyên sâu cho từng bài làm: điểm nổi bật, điểm cần cải thiện, và đề xuất bước học tiếp theo. Dùng để theo dõi tiến độ hoặc chia sẻ với giáo viên."
+            data-en="Export in-depth reports for each session: highlights, areas for improvement, and next step suggestions. Use to track progress or share with teachers.">
+            Xuất báo cáo chuyên sâu cho từng bài làm: điểm nổi bật, điểm cần cải thiện, và đề xuất bước học tiếp theo.
+            Dùng để theo dõi tiến độ hoặc chia sẻ với giáo viên.</div>
+          <span class="feature-tag" data-vi="Xuất dữ liệu" data-en="Export">Xuất dữ liệu</span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -3391,6 +4102,10 @@
           Flashcard</button>
         <button class="tab-btn" onclick="switchTab('forum')" data-vi="💬 Diễn đàn" data-en="💬 Forum">💬 Diễn
           đàn</button>
+        <button class="tab-btn" onclick="switchTab('arena')" data-vi="🏆 Sàn đấu" data-en="🏆 Battle Arena">🏆 Sàn
+          đấu</button>
+        <button class="tab-btn" onclick="switchTab('report')" data-vi="📄 Báo cáo" data-en="📄 Report">📄 Báo
+          cáo</button>
       </div>
       <div class="preview-frame reveal d3">
         <div class="preview-topbar">
@@ -3583,6 +4298,61 @@
                   ứng oxy hóa – khử</div>
               </div>
             </div>
+
+            <!-- Focus Recommendations (expandable) -->
+            <div class="db-focus-section">
+              <div class="db-focus-header" onclick="toggleFocus(this)">
+                <span style="font-size:.85rem;">🎯</span>
+                <div class="db-focus-header-title" data-vi="LỘ TRÌNH ÔN TẬP · FOCUS RECOMMENDATIONS"
+                  data-en="STUDY ROADMAP · FOCUS RECOMMENDATIONS">LỘ TRÌNH ÔN TẬP · FOCUS RECOMMENDATIONS</div>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="db-focus-body">
+                <div
+                  style="font-size:.62rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;"
+                  data-vi="TOP 3 CHỦ ĐỀ CÓ TỈ LỆ SAI CAO NHẤT" data-en="TOP 3 TOPICS WITH HIGHEST ERROR RATE">TOP 3 CHỦ
+                  ĐỀ CÓ TỈ LỆ SAI CAO NHẤT</div>
+                <div class="db-focus-top3">
+                  <div class="db-focus-item">
+                    <div class="db-focus-rank">#1</div>
+                    <div class="db-focus-name" data-vi="PHẢN ỨNG OXI HÓA – KHỬ" data-en="REDOX REACTIONS">PHẢN ỨNG OXI
+                      HÓA – KHỬ</div>
+                    <div class="db-focus-err">100% · 3/3 câu</div>
+                  </div>
+                  <div class="db-focus-item">
+                    <div class="db-focus-rank">#2</div>
+                    <div class="db-focus-name" data-vi="GIẢI TÍCH" data-en="CALCULUS">GIẢI TÍCH</div>
+                    <div class="db-focus-err">100% · 2/2 câu</div>
+                  </div>
+                  <div class="db-focus-item">
+                    <div class="db-focus-rank">#3</div>
+                    <div class="db-focus-name" data-vi="ĐỊNH LUẬT OHM" data-en="OHM'S LAW">ĐỊNH LUẬT OHM</div>
+                    <div class="db-focus-err">75% · 3/4 câu</div>
+                  </div>
+                </div>
+                <div class="db-focus-path-title">⏱ <span data-vi="LỘ TRÌNH ĐỀ XUẤT" data-en="RECOMMENDED ROADMAP">LỘ
+                    TRÌNH ĐỀ XUẤT</span></div>
+                <div class="db-focus-path-item">
+                  <div class="db-focus-path-circle"></div>
+                  <span
+                    data-vi="Ôn lại lý thuyết Phản ứng oxi hóa – khử: cân bằng phương trình bằng phương pháp electron."
+                    data-en="Review redox reaction theory: balance equations using electron method.">Ôn lại lý thuyết
+                    Phản ứng oxi hóa – khử: cân bằng phương trình bằng phương pháp electron.</span>
+                </div>
+                <div class="db-focus-path-item">
+                  <div class="db-focus-path-circle"></div>
+                  <span data-vi="Luyện 5 bài Giải tích cơ bản về giới hạn và đạo hàm trước khi chuyển sang bài khó hơn."
+                    data-en="Practice 5 basic Calculus exercises on limits and derivatives before moving to harder ones.">Luyện
+                    5 bài Giải tích cơ bản về giới hạn và đạo hàm trước khi chuyển sang bài khó hơn.</span>
+                </div>
+                <div class="db-focus-path-item">
+                  <div class="db-focus-path-circle"></div>
+                  <span data-vi="Khi giải bài Định luật Ohm, luôn viết đơn vị đi kèm với con số để tránh lỗi ký hiệu."
+                    data-en="When solving Ohm's Law problems, always write units alongside numbers to avoid notation errors.">Khi
+                    giải bài Định luật Ohm, luôn viết đơn vị đi kèm với con số để tránh lỗi ký hiệu.</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -3677,6 +4447,123 @@
               <div class="post-actions">
                 <div class="post-action">❤️ <span>12</span></div>
                 <div class="post-action">💬 <span>8</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen: Battle Arena -->
+        <div class="screen" id="screen-arena">
+          <div class="arena-inner">
+            <div class="arena-header">
+              <div>
+                <div class="arena-title">🏆 <span data-vi="SÀN ĐẤU" data-en="BATTLE ARENA">SÀN ĐẤU</span></div>
+                <div class="arena-sub" data-vi="THÁCH THỨC CỘNG ĐỒNG · NHẬN SHARK COIN"
+                  data-en="CHALLENGE THE COMMUNITY · EARN SHARK COIN">THÁCH THỨC CỘNG ĐỒNG · NHẬN SHARK COIN</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:.5rem;">
+                <div class="arena-coin-badge">🪙 SHARK COIN <strong style="font-size:.9rem;">83</strong></div>
+                <button class="arena-create-btn">+ <span data-vi="Tạo bài thi" data-en="Create Challenge">Tạo bài
+                    thi</span></button>
+              </div>
+            </div>
+            <div class="arena-tabs">
+              <div class="arena-tab active" data-vi="Các bài thi" data-en="Challenges">Các bài thi</div>
+              <div class="arena-tab" data-vi="Phần thưởng" data-en="Rewards">Phần thưởng</div>
+            </div>
+
+            <div class="arena-challenge-card">
+              <div class="arena-challenge-top">
+                <span class="arena-challenge-badge">NONE</span>
+                <span class="arena-challenge-date">📅 22/04/2026</span>
+              </div>
+              <div class="arena-challenge-title">CALCULUS</div>
+              <div class="arena-challenge-meta">
+                <span class="arena-meta-pill" data-vi="Mức độ: Mixed" data-en="Level: Mixed">Mức độ: Mixed</span>
+                <span class="arena-meta-pill" data-vi="3 câu hỏi" data-en="3 questions">3 câu hỏi</span>
+              </div>
+              <div class="arena-challenge-footer">
+                <div class="arena-creator">
+                  <div class="arena-creator-avatar">X</div>
+                  <span data-vi="Xuân Bách Lê" data-en="Xuân Bách Lê">Xuân Bách Lê</span>
+                </div>
+                <div class="arena-play-count">▶ 1 <span data-vi="người đã thi" data-en="played">người đã thi</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arena-challenge-card" style="opacity:.7;">
+              <div class="arena-challenge-top">
+                <span class="arena-challenge-badge">TOÁN</span>
+                <span class="arena-challenge-date">📅 21/04/2026</span>
+              </div>
+              <div class="arena-challenge-title" data-vi="ĐẠO HÀM & VI TÍCH PHÂN" data-en="DERIVATIVES & INTEGRALS">ĐẠO
+                HÀM & VI TÍCH PHÂN</div>
+              <div class="arena-challenge-meta">
+                <span class="arena-meta-pill" data-vi="Mức độ: Khó" data-en="Level: Hard">Mức độ: Khó</span>
+                <span class="arena-meta-pill" data-vi="5 câu hỏi" data-en="5 questions">5 câu hỏi</span>
+              </div>
+              <div class="arena-challenge-footer">
+                <div class="arena-creator">
+                  <div class="arena-creator-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">A</div>
+                  <span data-vi="Nguyễn Anh Tú" data-en="Nguyễn Anh Tú">Nguyễn Anh Tú</span>
+                </div>
+                <div class="arena-play-count">▶ 4 <span data-vi="người đã thi" data-en="played">người đã thi</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center;padding:.7rem 0;font-size:.7rem;color:var(--text-muted);"
+              data-vi="🪙 Nhận Shark Coin khi thi và tạo thách thức"
+              data-en="🪙 Earn Shark Coin by competing and creating challenges">🪙 Nhận Shark Coin khi thi và tạo thách
+              thức</div>
+          </div>
+        </div>
+
+        <!-- Screen: Learning Report -->
+        <div class="screen" id="screen-report">
+          <div class="report-inner">
+            <div class="report-title-bar">
+              <div class="report-title">📄 <span data-vi="BÁO CÁO HỌC TẬP" data-en="LEARNING REPORT">BÁO CÁO HỌC
+                  TẬP</span></div>
+              <div style="display:flex;gap:.4rem;">
+                <div class="report-export-btn">📋</div>
+                <div class="report-export-btn">⬇</div>
+              </div>
+            </div>
+            <div class="report-topic-name" data-vi="ĐẠO HÀM" data-en="DERIVATIVES">ĐẠO HÀM</div>
+            <div class="report-2col">
+              <div class="report-box green">
+                <div class="report-box-title green">✓ <span data-vi="ĐIỂM NỔI BẬT" data-en="HIGHLIGHTS">ĐIỂM NỔI
+                    BẬT</span></div>
+                <div class="report-item green" data-vi="Hiểu biết tốt về khái niệm đạo hàm cơ bản."
+                  data-en="Good understanding of basic derivative concepts.">Hiểu biết tốt về khái niệm đạo hàm cơ bản.
+                </div>
+                <div class="report-item green" data-vi="Tính đạo hàm đa thức một cách chính xác."
+                  data-en="Accurately differentiates polynomials.">Tính đạo hàm đa thức một cách chính xác.</div>
+                <div class="report-item green" data-vi="Áp dụng thành công quy tắc đạo hàm hàm mũ."
+                  data-en="Successfully applies exponential derivative rules.">Áp dụng thành công quy tắc đạo hàm hàm
+                  mũ.</div>
+              </div>
+              <div class="report-box red">
+                <div class="report-box-title red">⚠ <span data-vi="ĐIỂM CẦN CẢI THIỆN" data-en="AREAS TO IMPROVE">ĐIỂM
+                    CẦN CẢI THIỆN</span></div>
+                <div class="report-item red" data-vi="Khó khăn với quy tắc chuỗi và tích."
+                  data-en="Struggles with chain and product rules.">Khó khăn với quy tắc chuỗi và tích.</div>
+                <div class="report-item red" data-vi="Chưa kiểm chứng bài khó hơn."
+                  data-en="Harder problems not yet tested.">Chưa kiểm chứng bài khó hơn.</div>
+              </div>
+            </div>
+            <div class="report-suggest-title">⚙ <span data-vi="ĐỀ XUẤT" data-en="SUGGESTIONS">ĐỀ XUẤT</span></div>
+            <div class="report-suggest-row">
+              <div class="report-task">
+                <div class="report-task-circle"></div><span data-vi="Ôn lại ứng dụng đạo hàm trong tối ưu hóa."
+                  data-en="Review derivative applications in optimization.">Ôn lại ứng dụng đạo hàm trong tối ưu
+                  hóa.</span>
+              </div>
+              <div class="report-task">
+                <div class="report-task-circle"></div><span data-vi="Thử thách với các dạng đạo hàm cấp cao."
+                  data-en="Try higher-order derivative problems.">Thử thách với các dạng đạo hàm cấp cao.</span>
               </div>
             </div>
           </div>
@@ -4060,6 +4947,21 @@
       chip.addEventListener('click', () => {
         chip.closest('.fc-topics').querySelectorAll('.fc-topic-chip').forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
+      });
+    });
+
+    /* ── FOCUS RECOMMENDATIONS TOGGLE ───────────────────────────── */
+    function toggleFocus(header) {
+      header.classList.toggle('open');
+      const body = header.nextElementSibling;
+      body.classList.toggle('open');
+    }
+
+    /* ── ARENA TABS ──────────────────────────────────────────────── */
+    document.querySelectorAll('.arena-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        tab.closest('.arena-tabs').querySelectorAll('.arena-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
       });
     });
   </script>
